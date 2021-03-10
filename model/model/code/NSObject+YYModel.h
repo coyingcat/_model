@@ -381,14 +381,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable Class)modelCustomClassForDictionary:(NSDictionary *)dictionary;
 
 /**
- All the properties in blacklist will be ignored in model transform process.
- Returns nil to ignore this feature.
- 
- @return An array of property's name.
- */
-+ (nullable NSArray<NSString *> *)modelPropertyBlacklist;
-
-/**
  If a property is not in the whitelist, it will be ignored in model transform process.
  Returns nil to ignore this feature.
  

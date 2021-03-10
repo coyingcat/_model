@@ -484,15 +484,6 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
     if (!classInfo) return nil;
     self = [super init];
     
-    // Get black list
-    NSSet *blacklist = nil;
-    if ([cls respondsToSelector:@selector(modelPropertyBlacklist)]) {
-        NSArray *properties = [(id<YYModel>)cls modelPropertyBlacklist];
-        if (properties) {
-            blacklist = [NSSet setWithArray:properties];
-        }
-    }
-    
     // Get white list
     NSSet *whitelist = nil;
     if ([cls respondsToSelector:@selector(modelPropertyWhitelist)]) {
@@ -531,7 +522,7 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
     while (curClassInfo && curClassInfo.superCls != nil) { // recursive parse super class, but ignore root class (NSObject/NSProxy)
         for (YYClassPropertyInfo *propertyInfo in curClassInfo.propertyInfos.allValues) {
             if (!propertyInfo.name) continue;
-            if (blacklist && [blacklist containsObject:propertyInfo.name]) continue;
+         
             if (whitelist && ![whitelist containsObject:propertyInfo.name]) continue;
             _YYModelPropertyMeta *meta = [_YYModelPropertyMeta metaWithClassInfo:classInfo
                                                                     propertyInfo:propertyInfo
