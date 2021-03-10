@@ -1752,37 +1752,3 @@ static NSString *ModelDescription(NSObject *model) {
 
 @end
 
-
-
-@implementation NSDictionary (YYModel)
-
-+ (NSDictionary *)yy_modelDictionaryWithClass:(Class)cls json:(id)json {
-    if (!json) return nil;
-    NSDictionary *dic = nil;
-    NSData *jsonData = nil;
-    if ([json isKindOfClass:[NSDictionary class]]) {
-        dic = json;
-    } else if ([json isKindOfClass:[NSString class]]) {
-        jsonData = [(NSString *)json dataUsingEncoding : NSUTF8StringEncoding];
-    } else if ([json isKindOfClass:[NSData class]]) {
-        jsonData = json;
-    }
-    if (jsonData) {
-        dic = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:NULL];
-        if (![dic isKindOfClass:[NSDictionary class]]) dic = nil;
-    }
-    return [self yy_modelDictionaryWithClass:cls dictionary:dic];
-}
-
-+ (NSDictionary *)yy_modelDictionaryWithClass:(Class)cls dictionary:(NSDictionary *)dic {
-    if (!cls || !dic) return nil;
-    NSMutableDictionary *result = [NSMutableDictionary new];
-    for (NSString *key in dic.allKeys) {
-        if (![key isKindOfClass:[NSString class]]) continue;
-        NSObject *obj = [cls yy_modelWithDictionary:dic[key]];
-        if (obj) result[key] = obj;
-    }
-    return result;
-}
-
-@end

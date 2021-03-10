@@ -124,27 +124,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-
-/**
- Provide some data-model method for NSDictionary.
- */
-@interface NSDictionary (YYModel)
-
-/**
- Creates and returns a dictionary from a json.
- This method is thread-safe.
- 
- @param cls  The value instance's class in dictionary.
- @param json  A json dictionary of `NSDictionary`, `NSString` or `NSData`.
-              Example: {"user1":{"name","Mary"}, "user2": {name:"Joe"}}
- 
- @return A dictionary, or nil if an error occurs.
- */
-+ (nullable NSDictionary *)yy_modelDictionaryWithClass:(Class)cls json:(id)json;
-@end
-
-
-
 /**
  If the default model transform does not fit to your model class, implement one or
  more method in this protocol to change the default key-value transform process.
