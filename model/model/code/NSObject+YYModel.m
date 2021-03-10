@@ -248,7 +248,7 @@ static force_inline Class YYNSBlockClass() {
     static Class cls;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        void (^block)(void) = ^{};
+        EmptyBlock block = ^{};
         cls = ((NSObject *)block).class;
         while (class_getSuperclass(cls) != [NSObject class]) {
             cls = class_getSuperclass(cls);
@@ -1062,9 +1062,9 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
                 
             case YYEncodingTypeBlock: {
                 if (isNull) {
-                    ((void (*)(id, SEL, void (^)(void)))(void *) objc_msgSend)((id)model, meta->_setter, (void (^)(void))NULL);
+                    ((void (*)(id, SEL, EmptyBlock))(void *) objc_msgSend)((id)model, meta->_setter, (EmptyBlock)NULL);
                 } else if ([value isKindOfClass:YYNSBlockClass()]) {
-                    ((void (*)(id, SEL, void (^)(void)))(void *) objc_msgSend)((id)model, meta->_setter, (void (^)(void))value);
+                    ((void (*)(id, SEL, EmptyBlock))(void *) objc_msgSend)((id)model, meta->_setter, (EmptyBlock)value);
                 }
             } break;
                 

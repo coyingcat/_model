@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "ForBlock.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YYTestAutoTypeModel : NSObject
@@ -27,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property long double longDoubleValue;
 @property (strong) Class classValue;
 @property SEL selectorValue;
-@property (copy) void (^blockValue)(void);
+@property (copy) EmptyBlock blockValue;
 @property void *pointerValue;
 @property CGRect structValue;
 @property CGPoint pointValue;

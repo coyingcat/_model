@@ -39,6 +39,7 @@
 		265F03B825F85A3500B7BB16 /* NSObject+YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
 		265F03BC25F85B6200B7BB16 /* YYTestAutoTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYTestAutoTypeModel.h; sourceTree = "<group>"; };
 		265F03BD25F85B6200B7BB16 /* YYTestAutoTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYTestAutoTypeModel.m; sourceTree = "<group>"; };
+		265F03C125F8627200B7BB16 /* ForBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForBlock.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,11 +93,12 @@
 		265F03B325F85A3500B7BB16 /* code */ = {
 			isa = PBXGroup;
 			children = (
-				265F03B425F85A3500B7BB16 /* YYClassInfo.h */,
-				265F03B525F85A3500B7BB16 /* YYModel.h */,
-				265F03B625F85A3500B7BB16 /* NSObject+YYModel.m */,
-				265F03B725F85A3500B7BB16 /* YYClassInfo.m */,
+				265F03C125F8627200B7BB16 /* ForBlock.h */,
 				265F03B825F85A3500B7BB16 /* NSObject+YYModel.h */,
+				265F03B625F85A3500B7BB16 /* NSObject+YYModel.m */,
+				265F03B425F85A3500B7BB16 /* YYClassInfo.h */,
+				265F03B725F85A3500B7BB16 /* YYClassInfo.m */,
+				265F03B525F85A3500B7BB16 /* YYModel.h */,
 			);
 			path = code;
 			sourceTree = "<group>";
