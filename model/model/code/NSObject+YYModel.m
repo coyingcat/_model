@@ -32,7 +32,7 @@ typedef NS_ENUM (NSUInteger, YYEncodingNSType) {
     YYEncodingTypeNSDictionary,
     YYEncodingTypeNSMutableDictionary,
     YYEncodingTypeNSSet,
-    YYEncodingTypeNSMutableSet,
+    YYEncodingTypeNSMutableSet
 };
 
 /// Get the Foundation class type from property info.
