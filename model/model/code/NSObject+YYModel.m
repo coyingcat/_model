@@ -20,18 +20,23 @@ typedef NS_ENUM (NSUInteger, YYEncodingNSType) {
     YYEncodingTypeNSUnknown = 0,
     YYEncodingTypeNSString,
     YYEncodingTypeNSMutableString,
+    
     YYEncodingTypeNSValue,
     YYEncodingTypeNSNumber,
     YYEncodingTypeNSDecimalNumber,
+    
     YYEncodingTypeNSData,
     YYEncodingTypeNSMutableData,
     YYEncodingTypeNSDate,
+    
     YYEncodingTypeNSURL,
     YYEncodingTypeNSArray,
     YYEncodingTypeNSMutableArray,
+    
     YYEncodingTypeNSDictionary,
     YYEncodingTypeNSMutableDictionary,
     YYEncodingTypeNSSet,
+    
     YYEncodingTypeNSMutableSet
 };
 
@@ -1289,7 +1294,8 @@ static NSString *ModelDescription(NSObject *model) {
     
     _YYModelMeta *modelMeta = [_YYModelMeta metaWithClass:model.class];
     switch (modelMeta->_nsType) {
-        case YYEncodingTypeNSString: case YYEncodingTypeNSMutableString: {
+        case YYEncodingTypeNSString:
+        case YYEncodingTypeNSMutableString: {
             return [NSString stringWithFormat:@"\"%@\"",model];
         }
         
@@ -1310,11 +1316,13 @@ static NSString *ModelDescription(NSObject *model) {
             return [NSString stringWithFormat:@"%@",model];
         }
             
-        case YYEncodingTypeNSSet: case YYEncodingTypeNSMutableSet: {
+        case YYEncodingTypeNSSet:
+        case YYEncodingTypeNSMutableSet: {
             model = ((NSSet *)model).allObjects;
         } // no break
             
-        case YYEncodingTypeNSArray: case YYEncodingTypeNSMutableArray: {
+        case YYEncodingTypeNSArray:
+        case YYEncodingTypeNSMutableArray: {
             NSArray *array = (id)model;
             NSMutableString *desc = [NSMutableString new];
             if (array.count == 0) {
@@ -1331,7 +1339,8 @@ static NSString *ModelDescription(NSObject *model) {
                 return desc;
             }
         }
-        case YYEncodingTypeNSDictionary: case YYEncodingTypeNSMutableDictionary: {
+        case YYEncodingTypeNSDictionary:
+        case YYEncodingTypeNSMutableDictionary: {
             NSDictionary *dic = (id)model;
             NSMutableString *desc = [NSMutableString new];
             if (dic.count == 0) {
