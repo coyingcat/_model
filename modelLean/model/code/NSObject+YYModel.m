@@ -41,22 +41,27 @@ typedef NS_ENUM (NSUInteger, YYEncodingNSType) {
 };
 
 /// Get the Foundation class type from property info.
-static force_inline YYEncodingNSType YYClassGetNSType(Class cls) {
+static force_inline YYEncodingNSType YYClassGetNSType(Class cls){
     if (!cls) return YYEncodingTypeNSUnknown;
     if ([cls isSubclassOfClass:[NSMutableString class]]) return YYEncodingTypeNSMutableString;
     if ([cls isSubclassOfClass:[NSString class]]) return YYEncodingTypeNSString;
+    
     if ([cls isSubclassOfClass:[NSDecimalNumber class]]) return YYEncodingTypeNSDecimalNumber;
     if ([cls isSubclassOfClass:[NSNumber class]]) return YYEncodingTypeNSNumber;
     if ([cls isSubclassOfClass:[NSValue class]]) return YYEncodingTypeNSValue;
+    
     if ([cls isSubclassOfClass:[NSMutableData class]]) return YYEncodingTypeNSMutableData;
     if ([cls isSubclassOfClass:[NSData class]]) return YYEncodingTypeNSData;
     if ([cls isSubclassOfClass:[NSDate class]]) return YYEncodingTypeNSDate;
+    
     if ([cls isSubclassOfClass:[NSURL class]]) return YYEncodingTypeNSURL;
     if ([cls isSubclassOfClass:[NSMutableArray class]]) return YYEncodingTypeNSMutableArray;
     if ([cls isSubclassOfClass:[NSArray class]]) return YYEncodingTypeNSArray;
+    
     if ([cls isSubclassOfClass:[NSMutableDictionary class]]) return YYEncodingTypeNSMutableDictionary;
     if ([cls isSubclassOfClass:[NSDictionary class]]) return YYEncodingTypeNSDictionary;
     if ([cls isSubclassOfClass:[NSMutableSet class]]) return YYEncodingTypeNSMutableSet;
+    
     if ([cls isSubclassOfClass:[NSSet class]]) return YYEncodingTypeNSSet;
     return YYEncodingTypeNSUnknown;
 }
