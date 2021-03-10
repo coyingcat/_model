@@ -13,3 +13,14 @@
 
 @end
 
+
+
+
+
+
+@interface YYTestModelToJSON: NSObject
+
+
+- (void)testToJSON;
+
+@end

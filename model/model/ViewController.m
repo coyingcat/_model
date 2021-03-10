@@ -21,7 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self testBlock];
+    // [self testBlock];
+    YYTestModelToJSON * try = [[YYTestModelToJSON alloc] init];
+    [try testToJSON];
 }
 
 
@@ -49,11 +51,6 @@
 
 
 
-
-
-@interface YYTestModelToJSON: NSObject
-
-@end
 
 @implementation YYTestModelToJSON
 
