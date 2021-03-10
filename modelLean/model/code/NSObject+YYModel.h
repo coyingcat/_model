@@ -125,28 +125,6 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-
-/**
- Provide some data-model method for NSArray.
- */
-@interface NSArray (YYModel)
-
-/**
- Creates and returns an array from a json-array.
- This method is thread-safe.
- 
- @param cls  The instance's class in array.
- @param json  A json array of `NSArray`, `NSString` or `NSData`.
-              Example: [{"name":"Mary"},{name:"Joe"}]
- 
- @return A array, or nil if an error occurs.
- */
-+ (nullable NSArray *)yy_modelArrayWithClass:(Class)cls json:(id)json;
-
-@end
-
-
-
 /**
  Provide some data-model method for NSDictionary.
  */
