@@ -9,6 +9,8 @@
 #import "YYTestAutoTypeModel.h"
 #import "YYModel.h"
 #import "ForBlock.h"
+#import "YYTestHelper.h"
+
 
 @interface ViewController ()
 
@@ -39,4 +41,68 @@
 }
 
 
+@end
+
+
+
+
+
+
+
+
+
+@interface YYTestModelToJSON: NSObject
+
+@end
+
+@implementation YYTestModelToJSON
+
+
+- (void)testToJSON {
+    YYTestModelToJSONModel *model = [YYTestModelToJSONModel new];
+    model.intValue = 1;
+    model.longValue = 2;
+    model.unsignedLongLongValue = 3;
+    model.shortValue = 4;
+    model.array = @[@1,@"2",[NSURL URLWithString:@"https://github.com"]];
+    model.set = [NSSet setWithArray:model.array];
+    model.color = [UIColor colorWithRed:1 green:0 blue:0 alpha:0.5];
+    
+    NSDictionary *jsonObject = [model yy_modelToJSONObject];
+    NSLog(@"%d", [jsonObject isKindOfClass:[NSDictionary class]]);
+    NSLog(@"%d", [jsonObject[@"int"] isEqual:@(1)]);
+    NSLog(@"%d", [jsonObject[@"long"] isEqual:@(2)] || [jsonObject[@"long"] isEqual:@(3)]);
+    NSLog(@"%d", [ ((NSDictionary *)jsonObject[@"ext"])[@"short"] isEqual:@(4)]);
+    NSLog(@"%d", jsonObject[@"color"] != nil);
+    
+    NSString *jsonString = [model yy_modelToJSONString];
+    
+    NSLog(@"%d", [[YYTestHelper jsonObjectFromString:jsonString] isKindOfClass:[NSDictionary class]]);
+    NSData *jsonData = [model yy_modelToJSONData];
+    
+    NSLog(@"%d", [[YYTestHelper jsonObjectFromData:jsonData] isKindOfClass:[NSDictionary class]]);
+    model = [YYTestModelToJSONModel yy_modelWithJSON:jsonData];
+    
+    NSLog(@"%d", model.intValue == 1);
+}
+
+- (void)testKeyPath {
+    YYTestKeyPathModelToJSONModel *model = [YYTestKeyPathModelToJSONModel new];
+    model.a = @"a";
+    model.b = @"b";
+    model.c = @"c";
+    model.d = @"d";
+    model.e = @"e";
+    model.f = @{};
+    
+    NSDictionary *dic = [model yy_modelToJSONObject];
+    NSDictionary *ext = dic[@"ext"];
+    NSLog(@"%d", [ext[@"b"] isEqualToString:@"b"]);
+    
+    NSLog(@"%d", [ext[@"a"] isEqualToString:@"a"] || [ext[@"a"] isEqualToString:@"c"]);
+    
+    model.f = @{@"g" : @""};
+    dic = [model yy_modelToJSONObject];
+    
+}
 @end

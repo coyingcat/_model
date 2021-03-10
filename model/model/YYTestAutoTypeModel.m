@@ -58,3 +58,15 @@
 
 
 @end
+
+
+@implementation YYTestModelToJSONModel
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{
+             @"intValue" : @"int",
+             @"longValue" : @"long",             // mapped to same key
+             @"unsignedLongLongValue" : @"long", // mapped to same key
+             @"shortValue" : @"ext.short"        // mapped to key path
+             };
+}
+@end

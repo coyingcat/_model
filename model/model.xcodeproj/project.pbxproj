@@ -17,6 +17,7 @@
 		265F03B925F85A3500B7BB16 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 265F03B625F85A3500B7BB16 /* NSObject+YYModel.m */; };
 		265F03BA25F85A3500B7BB16 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 265F03B725F85A3500B7BB16 /* YYClassInfo.m */; };
 		265F03BE25F85B6200B7BB16 /* YYTestAutoTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 265F03BD25F85B6200B7BB16 /* YYTestAutoTypeModel.m */; };
+		265F03C625F86B6300B7BB16 /* YYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 265F03C525F86B6300B7BB16 /* YYTestHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,8 @@
 		265F03BC25F85B6200B7BB16 /* YYTestAutoTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YYTestAutoTypeModel.h; sourceTree = "<group>"; };
 		265F03BD25F85B6200B7BB16 /* YYTestAutoTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YYTestAutoTypeModel.m; sourceTree = "<group>"; };
 		265F03C125F8627200B7BB16 /* ForBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForBlock.h; sourceTree = "<group>"; };
+		265F03C425F86B6300B7BB16 /* YYTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTestHelper.h; sourceTree = "<group>"; };
+		265F03C525F86B6300B7BB16 /* YYTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTestHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,20 +75,22 @@
 		265F039825F859FB00B7BB16 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				265F03B325F85A3500B7BB16 /* code */,
 				265F039925F859FB00B7BB16 /* AppDelegate.h */,
 				265F039A25F859FB00B7BB16 /* AppDelegate.m */,
+				265F03A525F859FC00B7BB16 /* Assets.xcassets */,
+				265F03B325F85A3500B7BB16 /* code */,
+				265F03AA25F859FD00B7BB16 /* Info.plist */,
+				265F03A725F859FD00B7BB16 /* LaunchScreen.storyboard */,
+				265F03AB25F859FD00B7BB16 /* main.m */,
+				265F03A225F859FB00B7BB16 /* Main.storyboard */,
 				265F039C25F859FB00B7BB16 /* SceneDelegate.h */,
 				265F039D25F859FB00B7BB16 /* SceneDelegate.m */,
 				265F039F25F859FB00B7BB16 /* ViewController.h */,
 				265F03A025F859FB00B7BB16 /* ViewController.m */,
-				265F03A225F859FB00B7BB16 /* Main.storyboard */,
-				265F03A525F859FC00B7BB16 /* Assets.xcassets */,
-				265F03A725F859FD00B7BB16 /* LaunchScreen.storyboard */,
-				265F03AA25F859FD00B7BB16 /* Info.plist */,
-				265F03AB25F859FD00B7BB16 /* main.m */,
 				265F03BC25F85B6200B7BB16 /* YYTestAutoTypeModel.h */,
 				265F03BD25F85B6200B7BB16 /* YYTestAutoTypeModel.m */,
+				265F03C425F86B6300B7BB16 /* YYTestHelper.h */,
+				265F03C525F86B6300B7BB16 /* YYTestHelper.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -175,6 +180,7 @@
 				265F03BE25F85B6200B7BB16 /* YYTestAutoTypeModel.m in Sources */,
 				265F03A125F859FB00B7BB16 /* ViewController.m in Sources */,
 				265F03B925F85A3500B7BB16 /* NSObject+YYModel.m in Sources */,
+				265F03C625F86B6300B7BB16 /* YYTestHelper.m in Sources */,
 				265F039B25F859FB00B7BB16 /* AppDelegate.m in Sources */,
 				265F03AC25F859FD00B7BB16 /* main.m in Sources */,
 				265F03BA25F85A3500B7BB16 /* YYClassInfo.m in Sources */,
