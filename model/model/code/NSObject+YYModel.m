@@ -484,15 +484,6 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
     if (!classInfo) return nil;
     self = [super init];
     
-    // Get white list
-    NSSet *whitelist = nil;
-    if ([cls respondsToSelector:@selector(modelPropertyWhitelist)]) {
-        NSArray *properties = [(id<YYModel>)cls modelPropertyWhitelist];
-        if (properties) {
-            whitelist = [NSSet setWithArray:properties];
-        }
-    }
-    
     // Get container property's generic class
     NSDictionary *genericMapper = nil;
     if ([cls respondsToSelector:@selector(modelContainerPropertyGenericClass)]) {
@@ -523,7 +514,6 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
         for (YYClassPropertyInfo *propertyInfo in curClassInfo.propertyInfos.allValues) {
             if (!propertyInfo.name) continue;
          
-            if (whitelist && ![whitelist containsObject:propertyInfo.name]) continue;
             _YYModelPropertyMeta *meta = [_YYModelPropertyMeta metaWithClassInfo:classInfo
                                                                     propertyInfo:propertyInfo
                                                                          generic:genericMapper[propertyInfo.name]];

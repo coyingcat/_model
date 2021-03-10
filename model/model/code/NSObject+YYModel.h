@@ -380,13 +380,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable Class)modelCustomClassForDictionary:(NSDictionary *)dictionary;
 
-/**
- If a property is not in the whitelist, it will be ignored in model transform process.
- Returns nil to ignore this feature.
- 
- @return An array of property's name.
- */
-+ (nullable NSArray<NSString *> *)modelPropertyWhitelist;
+
 
 /**
  This method's behavior is similar to `- (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic;`, 
