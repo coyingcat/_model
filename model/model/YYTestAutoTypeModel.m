@@ -70,3 +70,17 @@
              };
 }
 @end
+
+
+
+@implementation YYTestKeyPathModelToJSONModel
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{
+             @"a" : @"ext.a",
+             @"b" : @"ext.b",
+             @"c" : @"ext.a",
+             @"e" : @"d.e",
+             @"g" : @"f.g.g"
+             };
+}
+@end

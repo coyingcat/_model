@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property long double longDoubleValue;
 @property (strong) Class classValue;
 @property SEL selectorValue;
-@property (copy) void (^blockValue)();
+@property (copy) EmptyBlock blockValue;
 @property void *pointerValue;
 @property CGRect structValue;
 @property CGPoint pointValue;
@@ -113,17 +113,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *g;
 @end
 
-@implementation YYTestKeyPathModelToJSONModel
-+ (NSDictionary *)modelCustomPropertyMapper {
-    return @{
-             @"a" : @"ext.a",
-             @"b" : @"ext.b",
-             @"c" : @"ext.a",
-             @"e" : @"d.e",
-             @"g" : @"f.g.g"
-             };
-}
-@end
 
 
 NS_ASSUME_NONNULL_END
