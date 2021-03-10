@@ -161,28 +161,6 @@ static force_inline Class YYNSBlockClass() {
 }
 
 
-
-/**
- Get the ISO date formatter.
- 
- ISO8601 format example:
- 2010-07-09T16:13:30+12:00
- 2011-01-11T11:11:11+0000
- 2011-01-26T19:06:43Z
- 
- length: 20/24/25
- */
-static force_inline NSDateFormatter *YYISODateFormatter() {
-    static NSDateFormatter *formatter = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        formatter = [[NSDateFormatter alloc] init];
-        formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-        formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZ";
-    });
-    return formatter;
-}
-
 /// Get the value with key paths from dictionary
 /// The dic should be NSDictionary, and the keyPath should not be nil.
 static force_inline id YYValueForKeyPath(__unsafe_unretained NSDictionary *dic, __unsafe_unretained NSArray *keyPaths) {
@@ -1087,7 +1065,7 @@ static id ModelToJSONObjectRecursive(NSObject *model) {
     }
     if ([model isKindOfClass:[NSURL class]]) return ((NSURL *)model).absoluteString;
     if ([model isKindOfClass:[NSAttributedString class]]) return ((NSAttributedString *)model).string;
-    if ([model isKindOfClass:[NSDate class]]) return [YYISODateFormatter() stringFromDate:(id)model];
+    if ([model isKindOfClass:[NSDate class]]) return @"ha ha";
     if ([model isKindOfClass:[NSData class]]) return nil;
     
     
