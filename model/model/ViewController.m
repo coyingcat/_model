@@ -22,8 +22,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     // [self testBlock];
-    YYTestModelToJSON * try = [[YYTestModelToJSON alloc] init];
-    [try testKeyPath];
+    [self two];
 }
 
 
@@ -31,6 +30,12 @@
 - (void) one{
     YYTestModelToJSON * try = [[YYTestModelToJSON alloc] init];
     [try testToJSON];
+}
+
+
+- (void) two{
+    YYTestModelToJSON * try = [[YYTestModelToJSON alloc] init];
+    [try testKeyPath];
 }
 
 
@@ -98,6 +103,7 @@
     model.f = @{};
     
     NSDictionary *dic = [model yy_modelToJSONObject];
+    NSLog(@"\n\n\n%@", dic);
     NSDictionary *ext = dic[@"ext"];
     NSLog(@"%d", [ext[@"b"] isEqualToString:@"b"]);
     
@@ -105,7 +111,7 @@
     
     model.f = @{@"g" : @""};
     dic = [model yy_modelToJSONObject];
-    NSLog(@"%@", dic);
+    NSLog(@"\n\n\n%@", dic);
 }
 
 
