@@ -93,9 +93,7 @@
     NSLog(@"%d", [ ((NSDictionary *)jsonObject[@"ext"])[@"short"] isEqual:@(4)]);
     NSLog(@"%d", jsonObject[@"color"] != nil);
     
-    NSString *jsonString = [model yy_modelToJSONString];
     
-    NSLog(@"%d", [[YYTestHelper jsonObjectFromString:jsonString] isKindOfClass:[NSDictionary class]]);
     NSData *jsonData = [model yy_modelToJSONData];
     
     NSLog(@"%d", [[YYTestHelper jsonObjectFromData:jsonData] isKindOfClass:[NSDictionary class]]);

@@ -1534,12 +1534,6 @@ static NSString *ModelDescription(NSObject *model) {
     return [NSJSONSerialization dataWithJSONObject:jsonObject options:0 error:NULL];
 }
 
-- (NSString *)yy_modelToJSONString {
-    NSData *jsonData = [self yy_modelToJSONData];
-    if (jsonData.length == 0) return nil;
-    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-}
-
 - (id)yy_modelCopy{
     if (self == (id)kCFNull) return self;
     _YYModelMeta *modelMeta = [_YYModelMeta metaWithClass:self.class];
