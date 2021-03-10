@@ -100,22 +100,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable id)yy_modelCopy;
 
 /**
- Encode the receiver's properties to a coder.
- 
- @param aCoder  An archiver object.
- */
-- (void)yy_modelEncodeWithCoder:(NSCoder *)aCoder;
-
-/**
- Decode the receiver's properties from a decoder.
- 
- @param aDecoder  An archiver object.
- 
- @return self
- */
-- (id)yy_modelInitWithCoder:(NSCoder *)aDecoder;
-
-/**
  Get a hash code with the receiver's properties.
  
  @return Hash code.
