@@ -126,6 +126,10 @@ static force_inline NSNumber *YYNSNumberCreateFromID(__unsafe_unretained id valu
             const char *cstring = ((NSString *)value).UTF8String;
             if (!cstring) return nil;
             return @(atoll(cstring));
+            /*
+             atol() 函数的名字源于“ascii to long”，用来将字符串转换成长整型数(long)，其原型为：
+             long atol(const char * str);
+             */
         }
     }
     return nil;
