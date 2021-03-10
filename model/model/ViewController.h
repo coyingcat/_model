@@ -22,5 +22,6 @@
 
 
 - (void)testToJSON;
+- (void)testKeyPath;
 
 @end

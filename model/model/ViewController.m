@@ -23,10 +23,15 @@
     // Do any additional setup after loading the view.
     // [self testBlock];
     YYTestModelToJSON * try = [[YYTestModelToJSON alloc] init];
-    [try testToJSON];
+    [try testKeyPath];
 }
 
 
+
+- (void) one{
+    YYTestModelToJSON * try = [[YYTestModelToJSON alloc] init];
+    [try testToJSON];
+}
 
 
 - (void)testBlock {
@@ -100,6 +105,9 @@
     
     model.f = @{@"g" : @""};
     dic = [model yy_modelToJSONObject];
-    
+    NSLog(@"%@", dic);
 }
+
+
+
 @end
