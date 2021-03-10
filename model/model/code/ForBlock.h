@@ -11,4 +11,6 @@
 
 typedef void (^EmptyBlock)(void);
 
+typedef int (^IntegerBlock)(void);
+
 #endif /* ForBlock_h */

@@ -8,7 +8,7 @@
 #import "ViewController.h"
 #import "YYTestAutoTypeModel.h"
 #import "YYModel.h"
-
+#import "ForBlock.h"
 
 @interface ViewController ()
 
@@ -26,7 +26,7 @@
 
 
 - (void)testBlock {
-    int (^block)(void) = ^{return 12;};
+    IntegerBlock block = ^{return 12;};
     NSDictionary *dic = @{@"v":block};
     YYTestAutoTypeModel *model = [YYTestAutoTypeModel yy_modelWithDictionary:dic];
     if (model.blockValue) {
