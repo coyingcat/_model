@@ -93,17 +93,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable id)yy_modelToJSONObject;
 
 /**
- Generate a json string's data from the receiver's properties.
- 
- @return A json string's data, or nil if an error occurs.
- 
- @discussion Any of the invalid property is ignored.
- If the reciver is `NSArray`, `NSDictionary` or `NSSet`, it will also convert the 
- inner object to json string.
- */
-- (nullable NSData *)yy_modelToJSONData;
-
-/**
  Copy a instance with the receiver's properties.
  
  @return A copied instance, or nil if an error occurs.

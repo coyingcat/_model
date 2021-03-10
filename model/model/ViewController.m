@@ -92,14 +92,6 @@
     NSLog(@"%d", [jsonObject[@"long"] isEqual:@(2)] || [jsonObject[@"long"] isEqual:@(3)]);
     NSLog(@"%d", [ ((NSDictionary *)jsonObject[@"ext"])[@"short"] isEqual:@(4)]);
     NSLog(@"%d", jsonObject[@"color"] != nil);
-    
-    
-    NSData *jsonData = [model yy_modelToJSONData];
-    
-    NSLog(@"%d", [[YYTestHelper jsonObjectFromData:jsonData] isKindOfClass:[NSDictionary class]]);
-    model = [YYTestModelToJSONModel yy_modelWithJSON:jsonData];
-    
-    NSLog(@"%d", model.intValue == 1);
 }
 
 - (void)testKeyPath {

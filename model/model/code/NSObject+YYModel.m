@@ -1528,11 +1528,6 @@ static NSString *ModelDescription(NSObject *model) {
     return nil;
 }
 
-- (NSData *)yy_modelToJSONData {
-    id jsonObject = [self yy_modelToJSONObject];
-    if (!jsonObject) return nil;
-    return [NSJSONSerialization dataWithJSONObject:jsonObject options:0 error:NULL];
-}
 
 - (id)yy_modelCopy{
     if (self == (id)kCFNull) return self;
