@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		260E995725F8B38C00E2CE16 /* TestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 260E995625F8B38C00E2CE16 /* TestData.m */; };
+		260E995A25F8B42500E2CE16 /* one.json in Resources */ = {isa = PBXBuildFile; fileRef = 260E995925F8B42500E2CE16 /* one.json */; };
 		265F039B25F859FB00B7BB16 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 265F039A25F859FB00B7BB16 /* AppDelegate.m */; };
 		265F039E25F859FB00B7BB16 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 265F039D25F859FB00B7BB16 /* SceneDelegate.m */; };
 		265F03A125F859FB00B7BB16 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 265F03A025F859FB00B7BB16 /* ViewController.m */; };
@@ -21,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		260E995525F8B38C00E2CE16 /* TestData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestData.h; sourceTree = "<group>"; };
+		260E995625F8B38C00E2CE16 /* TestData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestData.m; sourceTree = "<group>"; };
+		260E995925F8B42500E2CE16 /* one.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = one.json; sourceTree = "<group>"; };
 		265F039625F859FB00B7BB16 /* model.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = model.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		265F039925F859FB00B7BB16 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		265F039A25F859FB00B7BB16 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -77,6 +82,7 @@
 			children = (
 				265F039925F859FB00B7BB16 /* AppDelegate.h */,
 				265F039A25F859FB00B7BB16 /* AppDelegate.m */,
+				260E995925F8B42500E2CE16 /* one.json */,
 				265F03A525F859FC00B7BB16 /* Assets.xcassets */,
 				265F03B325F85A3500B7BB16 /* code */,
 				265F03AA25F859FD00B7BB16 /* Info.plist */,
@@ -91,6 +97,8 @@
 				265F03BD25F85B6200B7BB16 /* YYTestAutoTypeModel.m */,
 				265F03C425F86B6300B7BB16 /* YYTestHelper.h */,
 				265F03C525F86B6300B7BB16 /* YYTestHelper.m */,
+				260E995525F8B38C00E2CE16 /* TestData.h */,
+				260E995625F8B38C00E2CE16 /* TestData.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -166,6 +174,7 @@
 			files = (
 				265F03A925F859FD00B7BB16 /* LaunchScreen.storyboard in Resources */,
 				265F03A625F859FC00B7BB16 /* Assets.xcassets in Resources */,
+				260E995A25F8B42500E2CE16 /* one.json in Resources */,
 				265F03A425F859FB00B7BB16 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -178,6 +187,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				265F03BE25F85B6200B7BB16 /* YYTestAutoTypeModel.m in Sources */,
+				260E995725F8B38C00E2CE16 /* TestData.m in Sources */,
 				265F03A125F859FB00B7BB16 /* ViewController.m in Sources */,
 				265F03B925F85A3500B7BB16 /* NSObject+YYModel.m in Sources */,
 				265F03C625F86B6300B7BB16 /* YYTestHelper.m in Sources */,

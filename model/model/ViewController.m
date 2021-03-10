@@ -11,6 +11,7 @@
 #import "ForBlock.h"
 #import "YYTestHelper.h"
 
+#import "TestData.h"
 
 @interface ViewController ()
 
@@ -22,7 +23,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     // [self testBlock];
-    [self two];
+    // [self two];
+    
+    NSString * path = [NSBundle.mainBundle pathForResource: @"one" ofType: @"json"];
+    NSString* jsonString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    NSData* jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *jsonError;
+    NSArray *json = [NSJSONSerialization JSONObjectWithData: jsonData options:kNilOptions error:&jsonError];
+     
+    Book * page = [Book yy_modelWithJSON: json];
+    NSDictionary * dict = [page yy_modelToJSONObject];
+    NSLog(@"%@", dict);
 }
 
 
