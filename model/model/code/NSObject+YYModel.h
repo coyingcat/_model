@@ -15,65 +15,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-
-
-
-/**
- Provide some data-model method:
- 
- * Convert json to any object, or convert any object to json.
- * Set object properties with a key-value dictionary (like KVC).
- * Implementations of `NSCoding`, `NSCopying`, `-hash` and `-isEqual:`.
- 
- See `YYModel` protocol for custom methods.
- 
- 
- Sample Code:
-    
-     ********************** json convertor *********************
- @code
-     @interface YYAuthor : NSObject
-     @property (nonatomic, strong) NSString *name;
-     @property (nonatomic, assign) NSDate *birthday;
-     @end
-     @implementation YYAuthor
-     @end
- 
-     @interface YYBook : NSObject
-     @property (nonatomic, copy) NSString *name;
-     @property (nonatomic, assign) NSUInteger pages;
-     @property (nonatomic, strong) YYAuthor *author;
-     @end
-     @implementation YYBook
-     @end
-    
-     int main() {
-         // create model from json
-         YYBook *book = [YYBook yy_modelWithJSON:@"{\"name\": \"Harry Potter\", \"pages\": 256, \"author\": {\"name\": \"J.K.Rowling\", \"birthday\": \"1965-07-31\" }}"];
- 
-         // convert model to json
-         NSString *json = [book yy_modelToJSONString];
-         // {"author":{"name":"J.K.Rowling","birthday":"1965-07-31T00:00:00+0000"},"name":"Harry Potter","pages":256}
-     }
- @endcode
- 
-     ********************** Coding/Copying/hash/equal *********************
- @code
-     @interface YYShadow :NSObject <NSCoding, NSCopying>
-     @property (nonatomic, copy) NSString *name;
-     @property (nonatomic, assign) CGSize size;
-     @end
- 
-     @implementation YYShadow
-     - (void)encodeWithCoder:(NSCoder *)aCoder { [self yy_modelEncodeWithCoder:aCoder]; }
-     - (id)initWithCoder:(NSCoder *)aDecoder { self = [super init]; return [self yy_modelInitWithCoder:aDecoder]; }
-     - (id)copyWithZone:(NSZone *)zone { return [self yy_modelCopy]; }
-     - (NSUInteger)hash { return [self yy_modelHash]; }
-     - (BOOL)isEqual:(id)object { return [self yy_modelIsEqual:object]; }
-     @end
- @endcode
- 
- */
 @interface NSObject (YYModel)
 
 /**
@@ -272,45 +213,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol YYModel <NSObject>
 @optional
 
-/**
- Custom property mapper.
- 
- @discussion If the key in JSON/Dictionary does not match to the model's property name,
- implements this method and returns the additional mapper.
- 
- Example:
-    
-    json: 
-        {
-            "n":"Harry Pottery",
-            "p": 256,
-            "ext" : {
-                "desc" : "A book written by J.K.Rowling."
-            },
-            "ID" : 100010
-        }
- 
-    model:
-    @code
-        @interface YYBook : NSObject
-        @property NSString *name;
-        @property NSInteger page;
-        @property NSString *desc;
-        @property NSString *bookID;
-        @end
-        
-        @implementation YYBook
-        + (NSDictionary *)modelCustomPropertyMapper {
-            return @{@"name"  : @"n",
-                     @"page"  : @"p",
-                     @"desc"  : @"ext.desc",
-                     @"bookID": @[@"id", @"ID", @"book_id"]};
-        }
-        @end
-     @endcode
- 
- @return A custom mapper for properties.
- */
+
 + (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper;
 
 /**
