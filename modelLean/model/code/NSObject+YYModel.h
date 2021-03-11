@@ -48,17 +48,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable instancetype)yy_modelWithDictionary:(NSDictionary *)dictionary;
 
-/**
- Set the receiver's properties with a json object.
- 
- @discussion Any invalid data in json will be ignored.
- 
- @param json  A json object of `NSDictionary`, `NSString` or `NSData`, mapped to the
- receiver's properties.
- 
- @return Whether succeed.
- */
-- (BOOL)yy_modelSetWithJSON:(id)json;
 
 /**
  Set the receiver's properties with a key-value dictionary.

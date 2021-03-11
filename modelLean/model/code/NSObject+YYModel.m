@@ -1072,11 +1072,6 @@ static id ModelToJSONObjectRecursive(NSObject *model) {
     return nil;
 }
 
-- (BOOL)yy_modelSetWithJSON:(id)json {
-    NSDictionary *dic = [NSObject _yy_dictionaryWithJSON:json];
-    return [self yy_modelSetWithDictionary:dic];
-}
-
 - (BOOL)yy_modelSetWithDictionary:(NSDictionary *)dic {
     if (!dic || dic == (id)kCFNull) return NO;
     if (![dic isKindOfClass:[NSDictionary class]]) return NO;
