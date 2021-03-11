@@ -1306,8 +1306,6 @@ static NSString *ModelDescription(NSObject *model) {
     if (![dictionary isKindOfClass:[NSDictionary class]]) return nil;
     
     Class cls = [self class];
-    _YYModelMeta *modelMeta = [_YYModelMeta metaWithClass:cls];
-    
     NSObject *one = [cls new];
     if ([one yy_modelSetWithDictionary:dictionary]) return one;
     return nil;
