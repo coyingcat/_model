@@ -354,9 +354,6 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
     return info;
 }
 
-+ (instancetype)classInfoWithClassName:(NSString *)className {
-    Class cls = NSClassFromString(className);
-    return [self classInfoWithClass:cls];
-}
+
 
 @end

@@ -184,16 +184,7 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding);
  */
 + (nullable instancetype)classInfoWithClass:(Class)cls;
 
-/**
- Get the class info of a specified Class.
- 
- @discussion This method will cache the class info and super-class info
- at the first access to the Class. This method is thread-safe.
- 
- @param className A class name.
- @return A class info, or nil if an error occurs.
- */
-+ (nullable instancetype)classInfoWithClassName:(NSString *)className;
+
 
 @end
 
