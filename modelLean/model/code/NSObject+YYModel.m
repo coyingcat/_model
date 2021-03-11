@@ -24,7 +24,6 @@ typedef NS_ENUM (NSUInteger, YYEncodingNSType) {
     YYEncodingTypeNSNumber,
     
     YYEncodingTypeNSData,
-    YYEncodingTypeNSDate,
     
     YYEncodingTypeNSURL,
     YYEncodingTypeNSArray,
@@ -42,7 +41,6 @@ static force_inline YYEncodingNSType YYClassGetNSType(Class cls){
     
     
     if ([cls isSubclassOfClass:[NSData class]]) return YYEncodingTypeNSData;
-    if ([cls isSubclassOfClass:[NSDate class]]) return YYEncodingTypeNSDate;
     
     if ([cls isSubclassOfClass:[NSURL class]]) return YYEncodingTypeNSURL;
     
@@ -592,15 +590,6 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
                         ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, data);
                     }
                 } break;
-                    
-                case YYEncodingTypeNSDate: {
-                    if ([value isKindOfClass:[NSDate class]]) {
-                        ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, value);
-                    } else if ([value isKindOfClass:[NSString class]]) {
-                        ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, [[NSDate alloc] init]);
-                    }
-                } break;
-                    
                 case YYEncodingTypeNSURL: {
                     if ([value isKindOfClass:[NSURL class]]) {
                         ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, value);
