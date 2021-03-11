@@ -156,14 +156,6 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding);
 @property (nullable, nonatomic, strong, readonly) NSDictionary<NSString *, YYClassMethodInfo *> *methodInfos; ///< methods
 @property (nullable, nonatomic, strong, readonly) NSDictionary<NSString *, YYClassPropertyInfo *> *propertyInfos; ///< properties
 
-/**
- If the class is changed (for example: you add a method to this class with
- 'class_addMethod()'), you should call this method to refresh the class info cache.
- 
- After called this method, `needUpdate` will returns `YES`, and you should call 
- 'classInfoWithClass' or 'classInfoWithClassName' to get the updated class info.
- */
-- (void)setNeedUpdate;
 
 /**
  If this method returns `YES`, you should stop using this instance and call

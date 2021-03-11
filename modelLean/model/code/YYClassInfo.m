@@ -318,10 +318,6 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
     _needUpdate = NO;
 }
 
-- (void)setNeedUpdate {
-    _needUpdate = YES;
-}
-
 - (BOOL)needUpdate {
     return _needUpdate;
 }
