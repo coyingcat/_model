@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 typedef NS_OPTIONS(NSUInteger, YYEncodingType) {
     YYEncodingTypeMask       = 0xFF, ///< mask of type value
+    
     YYEncodingTypeUnknown    = 0, ///< unknown
     YYEncodingTypeVoid       = 1, ///< void
     YYEncodingTypeBool       = 2, ///< bool
@@ -30,6 +31,7 @@ typedef NS_OPTIONS(NSUInteger, YYEncodingType) {
     YYEncodingTypeUInt32     = 8, ///< unsigned int
     YYEncodingTypeInt64      = 9, ///< long long
     YYEncodingTypeUInt64     = 10, ///< unsigned long long
+    
     YYEncodingTypeFloat      = 11, ///< float
     YYEncodingTypeDouble     = 12, ///< double
     YYEncodingTypeLongDouble = 13, ///< long double
@@ -40,6 +42,7 @@ typedef NS_OPTIONS(NSUInteger, YYEncodingType) {
     YYEncodingTypePointer    = 18, ///< void*
     YYEncodingTypeStruct     = 19, ///< struct
     YYEncodingTypeUnion      = 20, ///< union
+    
     YYEncodingTypeCString    = 21, ///< char*
     YYEncodingTypeCArray     = 22, ///< char[10] (for example)
     
@@ -80,6 +83,8 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding);
  Instance variable information.
  */
 @interface YYClassIvarInfo : NSObject
+
+
 @property (nonatomic, assign, readonly) Ivar ivar;              ///< ivar opaque struct
 @property (nonatomic, strong, readonly) NSString *name;         ///< Ivar's name
 @property (nonatomic, assign, readonly) ptrdiff_t offset;       ///< Ivar's offset
@@ -149,9 +154,11 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding);
 @property (nonatomic, assign, readonly) Class cls; ///< class object
 @property (nullable, nonatomic, assign, readonly) Class superCls; ///< super class object
 @property (nullable, nonatomic, assign, readonly) Class metaCls;  ///< class's meta class object
+
 @property (nonatomic, readonly) BOOL isMeta; ///< whether this class is meta class
 @property (nonatomic, strong, readonly) NSString *name; ///< class name
 @property (nullable, nonatomic, strong, readonly) YYClassInfo *superClassInfo; ///< super class's class info
+
 @property (nullable, nonatomic, strong, readonly) NSDictionary<NSString *, YYClassIvarInfo *> *ivarInfos; ///< ivars
 @property (nullable, nonatomic, strong, readonly) NSDictionary<NSString *, YYClassMethodInfo *> *methodInfos; ///< methods
 @property (nullable, nonatomic, strong, readonly) NSDictionary<NSString *, YYClassPropertyInfo *> *propertyInfos; ///< properties
@@ -172,3 +179,6 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding);
 @end
 
 NS_ASSUME_NONNULL_END
+// YYClassInfo, 包含 YYClassIvarInfo、YYClassMethodInfo 、YYClassPropertyInfo
+
+// 类信息，包含 ivar 、 method、 Property
