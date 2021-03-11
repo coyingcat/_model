@@ -107,15 +107,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSUInteger)yy_modelHash;
 
 /**
- Compares the receiver with another object for equality, based on properties.
- 
- @param model  Another object.
- 
- @return `YES` if the reciever is equal to the object, otherwise `NO`.
- */
-- (BOOL)yy_modelIsEqual:(id)model;
-
-/**
  Description method for debugging purposes based on properties.
  
  @return A string that describes the contents of the receiver.
