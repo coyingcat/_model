@@ -566,15 +566,11 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
                     } else if ([value isKindOfClass:[NSURL class]]) {
                         ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model,
                                                                        meta->_setter,
-                                                                       (meta->_nsType == YYEncodingTypeNSString) ?
-                                                                       ((NSURL *)value).absoluteString :
-                                                                       ((NSURL *)value).absoluteString.mutableCopy);
+                                                                       ((NSURL *)value).absoluteString);
                     } else if ([value isKindOfClass:[NSAttributedString class]]) {
                         ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model,
                                                                        meta->_setter,
-                                                                       (meta->_nsType == YYEncodingTypeNSString) ?
-                                                                       ((NSAttributedString *)value).string :
-                                                                       ((NSAttributedString *)value).string.mutableCopy);
+                                                                       ((NSAttributedString *)value).string);
                     }
                 } break;
                     
