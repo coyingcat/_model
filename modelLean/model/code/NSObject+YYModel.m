@@ -210,7 +210,6 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
     SEL _setter;                 ///< setter, or nil if the instances cannot respond
     BOOL _isKVCCompatible;       ///< YES if it can access with key-value coding
     BOOL _isStructAvailableForKeyedArchiver; ///< YES if the struct can encoded with keyed archiver/unarchiver
-    BOOL _hasCustomClassFromDictionary; ///< class/generic class implements +modelCustomClassForDictionary:
     
     /*
      property->key:       _mappedToKey:key     _mappedToKeyPath:nil            _mappedToKeyArray:nil
@@ -280,12 +279,6 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
     }
     meta->_cls = propertyInfo.cls;
     
-    if (generic) {
-        meta->_hasCustomClassFromDictionary = [generic respondsToSelector:@selector(modelCustomClassForDictionary:)];
-    } else if (meta->_cls && meta->_nsType == YYEncodingTypeNSUnknown) {
-        meta->_hasCustomClassFromDictionary = [meta->_cls respondsToSelector:@selector(modelCustomClassForDictionary:)];
-    }
-    
     if (propertyInfo.getter) {
         if ([classInfo.cls instancesRespondToSelector:propertyInfo.getter]) {
             meta->_getter = propertyInfo.getter;
@@ -351,7 +344,7 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
     BOOL _hasCustomWillTransformFromDictionary;
     BOOL _hasCustomTransformFromDictionary;
     BOOL _hasCustomTransformToDictionary;
-    BOOL _hasCustomClassFromDictionary;
+   
 }
 @end
 
@@ -481,7 +474,6 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
     _hasCustomWillTransformFromDictionary = ([cls instancesRespondToSelector:@selector(modelCustomWillTransformFromDictionary:)]);
     _hasCustomTransformFromDictionary = ([cls instancesRespondToSelector:@selector(modelCustomTransformFromDictionary:)]);
     _hasCustomTransformToDictionary = ([cls instancesRespondToSelector:@selector(modelCustomTransformToDictionary:)]);
-    _hasCustomClassFromDictionary = ([cls respondsToSelector:@selector(modelCustomClassForDictionary:)]);
     
     return self;
 }
@@ -766,10 +758,7 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
                                     [objectArr addObject:one];
                                 } else if ([one isKindOfClass:[NSDictionary class]]) {
                                     Class cls = meta->_genericCls;
-                                    if (meta->_hasCustomClassFromDictionary) {
-                                        cls = [cls modelCustomClassForDictionary:one];
-                                        if (!cls) cls = meta->_genericCls; // for xcode code coverage
-                                    }
+                                    
                                     NSObject *newOne = [cls new];
                                     [newOne yy_modelSetWithDictionary:one];
                                     if (newOne) [objectArr addObject:newOne];
@@ -806,10 +795,7 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
                             [((NSDictionary *)value) enumerateKeysAndObjectsUsingBlock:^(NSString *oneKey, id oneValue, BOOL *stop) {
                                 if ([oneValue isKindOfClass:[NSDictionary class]]) {
                                     Class cls = meta->_genericCls;
-                                    if (meta->_hasCustomClassFromDictionary) {
-                                        cls = [cls modelCustomClassForDictionary:oneValue];
-                                        if (!cls) cls = meta->_genericCls; // for xcode code coverage
-                                    }
+                                    
                                     NSObject *newOne = [cls new];
                                     [newOne yy_modelSetWithDictionary:(id)oneValue];
                                     if (newOne) dic[oneKey] = newOne;
@@ -841,10 +827,7 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
                                 [set addObject:one];
                             } else if ([one isKindOfClass:[NSDictionary class]]) {
                                 Class cls = meta->_genericCls;
-                                if (meta->_hasCustomClassFromDictionary) {
-                                    cls = [cls modelCustomClassForDictionary:one];
-                                    if (!cls) cls = meta->_genericCls; // for xcode code coverage
-                                }
+                                
                                 NSObject *newOne = [cls new];
                                 [newOne yy_modelSetWithDictionary:one];
                                 if (newOne) [set addObject:newOne];
@@ -882,9 +865,7 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
                     if (one) {
                         [one yy_modelSetWithDictionary:value];
                     } else {
-                        if (meta->_hasCustomClassFromDictionary) {
-                            cls = [cls modelCustomClassForDictionary:value] ?: cls;
-                        }
+                        
                         one = [cls new];
                         [one yy_modelSetWithDictionary:value];
                         ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, (id)one);
@@ -1326,9 +1307,6 @@ static NSString *ModelDescription(NSObject *model) {
     
     Class cls = [self class];
     _YYModelMeta *modelMeta = [_YYModelMeta metaWithClass:cls];
-    if (modelMeta->_hasCustomClassFromDictionary) {
-        cls = [cls modelCustomClassForDictionary:dictionary] ?: cls;
-    }
     
     NSObject *one = [cls new];
     if ([one yy_modelSetWithDictionary:dictionary]) return one;
