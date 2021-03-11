@@ -19,40 +19,35 @@
 typedef NS_ENUM (NSUInteger, YYEncodingNSType) {
     YYEncodingTypeNSUnknown = 0,
     YYEncodingTypeNSString,
-    YYEncodingTypeNSMutableString,
     
     YYEncodingTypeNSValue,
     YYEncodingTypeNSNumber,
     
     YYEncodingTypeNSData,
-    YYEncodingTypeNSMutableData,
     YYEncodingTypeNSDate,
     
     YYEncodingTypeNSURL,
     YYEncodingTypeNSArray,
-    YYEncodingTypeNSMutableArray,
     
-    YYEncodingTypeNSDictionary,
-    YYEncodingTypeNSMutableDictionary
+    YYEncodingTypeNSDictionary
 };
 
 /// Get the Foundation class type from property info.
 static force_inline YYEncodingNSType YYClassGetNSType(Class cls){
     if (!cls) return YYEncodingTypeNSUnknown;
-    if ([cls isSubclassOfClass:[NSMutableString class]]) return YYEncodingTypeNSMutableString;
+    
     if ([cls isSubclassOfClass:[NSString class]]) return YYEncodingTypeNSString;
     if ([cls isSubclassOfClass:[NSNumber class]]) return YYEncodingTypeNSNumber;
     if ([cls isSubclassOfClass:[NSValue class]]) return YYEncodingTypeNSValue;
     
-    if ([cls isSubclassOfClass:[NSMutableData class]]) return YYEncodingTypeNSMutableData;
+    
     if ([cls isSubclassOfClass:[NSData class]]) return YYEncodingTypeNSData;
     if ([cls isSubclassOfClass:[NSDate class]]) return YYEncodingTypeNSDate;
     
     if ([cls isSubclassOfClass:[NSURL class]]) return YYEncodingTypeNSURL;
-    if ([cls isSubclassOfClass:[NSMutableArray class]]) return YYEncodingTypeNSMutableArray;
+    
     if ([cls isSubclassOfClass:[NSArray class]]) return YYEncodingTypeNSArray;
     
-    if ([cls isSubclassOfClass:[NSMutableDictionary class]]) return YYEncodingTypeNSMutableDictionary;
     if ([cls isSubclassOfClass:[NSDictionary class]]) return YYEncodingTypeNSDictionary;
     return YYEncodingTypeNSUnknown;
 }
@@ -558,14 +553,9 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
             ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, (id)nil);
         } else {
             switch (meta->_nsType) {
-                case YYEncodingTypeNSString:
-                case YYEncodingTypeNSMutableString: {
+                case YYEncodingTypeNSString:{
                     if ([value isKindOfClass:[NSString class]]) {
-                        if (meta->_nsType == YYEncodingTypeNSString) {
                             ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, value);
-                        } else {
-                            ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, ((NSString *)value).mutableCopy);
-                        }
                     } else if ([value isKindOfClass:[NSNumber class]]) {
                         ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model,
                                                                        meta->_setter,
@@ -600,20 +590,11 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
                     }
                 } break;
                     
-                case YYEncodingTypeNSData:
-                case YYEncodingTypeNSMutableData: {
+                case YYEncodingTypeNSData:{
                     if ([value isKindOfClass:[NSData class]]) {
-                        if (meta->_nsType == YYEncodingTypeNSData) {
                             ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, value);
-                        } else {
-                            NSMutableData *data = ((NSData *)value).mutableCopy;
-                            ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, data);
-                        }
                     } else if ([value isKindOfClass:[NSString class]]) {
                         NSData *data = [(NSString *)value dataUsingEncoding:NSUTF8StringEncoding];
-                        if (meta->_nsType == YYEncodingTypeNSMutableData) {
-                            data = ((NSData *)data).mutableCopy;
-                        }
                         ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, data);
                     }
                 } break;
@@ -640,8 +621,7 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
                     }
                 } break;
                     
-                case YYEncodingTypeNSArray:
-                case YYEncodingTypeNSMutableArray: {
+                case YYEncodingTypeNSArray:{
                     if (meta->_genericCls) {
                         NSArray *valueArr = nil;
                         if ([value isKindOfClass:[NSArray class]]) valueArr = value;
@@ -682,8 +662,7 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
                     }
                 } break;
                     
-                case YYEncodingTypeNSDictionary:
-                case YYEncodingTypeNSMutableDictionary: {
+                case YYEncodingTypeNSDictionary:{
                     if ([value isKindOfClass:[NSDictionary class]]) {
                         if (meta->_genericCls) {
                             NSMutableDictionary *dic = [NSMutableDictionary new];
