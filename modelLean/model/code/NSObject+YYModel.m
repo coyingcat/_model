@@ -34,10 +34,7 @@ typedef NS_ENUM (NSUInteger, YYEncodingNSType) {
     YYEncodingTypeNSMutableArray,
     
     YYEncodingTypeNSDictionary,
-    YYEncodingTypeNSMutableDictionary,
-    YYEncodingTypeNSSet,
-    
-    YYEncodingTypeNSMutableSet
+    YYEncodingTypeNSMutableDictionary
 };
 
 /// Get the Foundation class type from property info.
@@ -60,9 +57,6 @@ static force_inline YYEncodingNSType YYClassGetNSType(Class cls){
     
     if ([cls isSubclassOfClass:[NSMutableDictionary class]]) return YYEncodingTypeNSMutableDictionary;
     if ([cls isSubclassOfClass:[NSDictionary class]]) return YYEncodingTypeNSDictionary;
-    if ([cls isSubclassOfClass:[NSMutableSet class]]) return YYEncodingTypeNSMutableSet;
-    
-    if ([cls isSubclassOfClass:[NSSet class]]) return YYEncodingTypeNSSet;
     return YYEncodingTypeNSUnknown;
 }
 
@@ -732,39 +726,7 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
                             }
                         }
                     }
-                } break;
-                    
-                case YYEncodingTypeNSSet:
-                case YYEncodingTypeNSMutableSet: {
-                    NSSet *valueSet = nil;
-                    if ([value isKindOfClass:[NSArray class]]) valueSet = [NSMutableSet setWithArray:value];
-                    else if ([value isKindOfClass:[NSSet class]]) valueSet = ((NSSet *)value);
-                    
-                    if (meta->_genericCls) {
-                        NSMutableSet *set = [NSMutableSet new];
-                        for (id one in valueSet) {
-                            if ([one isKindOfClass:meta->_genericCls]) {
-                                [set addObject:one];
-                            } else if ([one isKindOfClass:[NSDictionary class]]) {
-                                Class cls = meta->_genericCls;
-                                
-                                NSObject *newOne = [cls new];
-                                [newOne yy_modelSetWithDictionary:one];
-                                if (newOne) [set addObject:newOne];
-                            }
-                        }
-                        ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, set);
-                    } else {
-                        if (meta->_nsType == YYEncodingTypeNSSet) {
-                            ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, valueSet);
-                        } else {
-                            ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model,
-                                                                           meta->_setter,
-                                                                           ((NSSet *)valueSet).mutableCopy);
-                        }
-                    }
-                } // break; commented for code coverage in next line
-                    
+                } break;  
                 default: break;
             }
         }
