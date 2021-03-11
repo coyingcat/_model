@@ -135,52 +135,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper;
 
-/**
- The generic class mapper for container properties.
- 
- @discussion If the property is a container object, such as NSArray/NSSet/NSDictionary,
- implements this method and returns a property->class mapper, tells which kind of 
- object will be add to the array/set/dictionary.
- 
-  Example:
-  @code
-        @class YYShadow, YYBorder, YYAttachment;
- 
-        @interface YYAttributes
-        @property NSString *name;
-        @property NSArray *shadows;
-        @property NSSet *borders;
-        @property NSDictionary *attachments;
-        @end
- 
-        @implementation YYAttributes
-        + (NSDictionary *)modelContainerPropertyGenericClass {
-            return @{@"shadows" : [YYShadow class],
-                     @"borders" : YYBorder.class,
-                     @"attachments" : @"YYAttachment" };
-        }
-        @end
-  @endcode
- 
- @return A class mapper.
- */
-+ (nullable NSDictionary<NSString *, id> *)modelContainerPropertyGenericClass;
-
-/**
- If the default json-to-model transform does not fit to your model object, implement
- this method to do additional process. You can also use this method to validate the 
- model's properties.
- 
- @discussion If the model implements this method, it will be called at the end of
- `+modelWithJSON:`, `+modelWithDictionary:`, `-modelSetWithJSON:` and `-modelSetWithDictionary:`.
- If this method returns NO, the transform process will ignore this model.
- 
- @param dic  The json/kv dictionary.
- 
- @return Returns YES if the model is valid, or NO to ignore this model.
- */
-- (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic;
-
 
 @end
 
