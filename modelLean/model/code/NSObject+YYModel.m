@@ -340,9 +340,6 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
     NSUInteger _keyMappedCount;
     /// Model class type.
     YYEncodingNSType _nsType;
-    BOOL _hasCustomTransformFromDictionary;
-    BOOL _hasCustomTransformToDictionary;
-   
 }
 @end
 
@@ -1111,11 +1108,6 @@ static id ModelToJSONObjectRecursive(NSObject *model) {
             }
         }
     }];
-    
-    if (modelMeta->_hasCustomTransformToDictionary) {
-        BOOL suc = [((id<YYModel>)model) modelCustomTransformToDictionary:dic];
-        if (!suc) return nil;
-    }
     return result;
 }
 
