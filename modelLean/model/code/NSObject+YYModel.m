@@ -1459,9 +1459,6 @@ static NSString *ModelDescription(NSObject *model) {
     return self;
 }
 
-- (NSString *)yy_modelDescription {
-    return ModelDescription(self);
-}
 
 @end
 

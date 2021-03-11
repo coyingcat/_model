@@ -99,13 +99,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable id)yy_modelCopy;
 
-/**
- Description method for debugging purposes based on properties.
- 
- @return A string that describes the contents of the receiver.
- */
-- (NSString *)yy_modelDescription;
-
 @end
 
 NS_ASSUME_NONNULL_END
