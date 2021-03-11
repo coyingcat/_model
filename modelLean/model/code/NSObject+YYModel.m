@@ -471,7 +471,6 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
     _nsType = YYClassGetNSType(cls);
     
     _hasCustomTransformFromDictionary = ([cls instancesRespondToSelector:@selector(modelCustomTransformFromDictionary:)]);
-    _hasCustomTransformToDictionary = ([cls instancesRespondToSelector:@selector(modelCustomTransformToDictionary:)]);
     
     return self;
 }
