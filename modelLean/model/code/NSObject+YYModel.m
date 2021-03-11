@@ -23,7 +23,6 @@ typedef NS_ENUM (NSUInteger, YYEncodingNSType) {
     
     YYEncodingTypeNSValue,
     YYEncodingTypeNSNumber,
-    YYEncodingTypeNSDecimalNumber,
     
     YYEncodingTypeNSData,
     YYEncodingTypeNSMutableData,
@@ -42,8 +41,6 @@ static force_inline YYEncodingNSType YYClassGetNSType(Class cls){
     if (!cls) return YYEncodingTypeNSUnknown;
     if ([cls isSubclassOfClass:[NSMutableString class]]) return YYEncodingTypeNSMutableString;
     if ([cls isSubclassOfClass:[NSString class]]) return YYEncodingTypeNSString;
-    
-    if ([cls isSubclassOfClass:[NSDecimalNumber class]]) return YYEncodingTypeNSDecimalNumber;
     if ([cls isSubclassOfClass:[NSNumber class]]) return YYEncodingTypeNSNumber;
     if ([cls isSubclassOfClass:[NSValue class]]) return YYEncodingTypeNSValue;
     
@@ -594,28 +591,12 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
                 } break;
                     
                 case YYEncodingTypeNSValue:
-                case YYEncodingTypeNSNumber:
-                case YYEncodingTypeNSDecimalNumber: {
+                case YYEncodingTypeNSNumber:{
                     if (meta->_nsType == YYEncodingTypeNSNumber) {
                         ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, YYNSNumberCreateFromID(value));
-                    } else if (meta->_nsType == YYEncodingTypeNSDecimalNumber) {
-                        if ([value isKindOfClass:[NSDecimalNumber class]]) {
-                            ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, value);
-                        } else if ([value isKindOfClass:[NSNumber class]]) {
-                            NSDecimalNumber *decNum = [NSDecimalNumber decimalNumberWithDecimal:[((NSNumber *)value) decimalValue]];
-                            ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, decNum);
-                        } else if ([value isKindOfClass:[NSString class]]) {
-                            NSDecimalNumber *decNum = [NSDecimalNumber decimalNumberWithString:value];
-                            NSDecimal dec = decNum.decimalValue;
-                            if (dec._length == 0 && dec._isNegative) {
-                                decNum = nil; // NaN
-                            }
-                            ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, decNum);
-                        }
-                    } else { // YYEncodingTypeNSValue
-                        if ([value isKindOfClass:[NSValue class]]) {
-                            ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, value);
-                        }
+                    } else if ([value isKindOfClass:[NSValue class]]) {
+                        // YYEncodingTypeNSValue
+                        ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, value);
                     }
                 } break;
                     
@@ -726,7 +707,7 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
                             }
                         }
                     }
-                } break;  
+                } break;
                 default: break;
             }
         }
