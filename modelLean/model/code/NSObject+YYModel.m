@@ -637,21 +637,9 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
                         }
                     } else {
                         if ([value isKindOfClass:[NSArray class]]) {
-                            if (meta->_nsType == YYEncodingTypeNSArray) {
                                 ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, value);
-                            } else {
-                                ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model,
-                                                                               meta->_setter,
-                                                                               ((NSArray *)value).mutableCopy);
-                            }
                         } else if ([value isKindOfClass:[NSSet class]]) {
-                            if (meta->_nsType == YYEncodingTypeNSArray) {
                                 ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, ((NSSet *)value).allObjects);
-                            } else {
-                                ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model,
-                                                                               meta->_setter,
-                                                                               ((NSSet *)value).allObjects.mutableCopy);
-                            }
                         }
                     }
                 } break;
@@ -671,13 +659,7 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
                             }];
                             ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, dic);
                         } else {
-                            if (meta->_nsType == YYEncodingTypeNSDictionary) {
                                 ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, value);
-                            } else {
-                                ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model,
-                                                                               meta->_setter,
-                                                                               ((NSDictionary *)value).mutableCopy);
-                            }
                         }
                     }
                 } break;
