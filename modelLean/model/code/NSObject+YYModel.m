@@ -259,15 +259,11 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
     }
     meta->_cls = propertyInfo.cls;
     
-    if (propertyInfo.getter) {
-        if ([classInfo.cls instancesRespondToSelector:propertyInfo.getter]) {
+    if ((propertyInfo.getter) && ([classInfo.cls instancesRespondToSelector:propertyInfo.getter])) {
             meta->_getter = propertyInfo.getter;
-        }
     }
-    if (propertyInfo.setter) {
-        if ([classInfo.cls instancesRespondToSelector:propertyInfo.setter]) {
+    if ( (propertyInfo.setter) && ([classInfo.cls instancesRespondToSelector:propertyInfo.setter]) ){
             meta->_setter = propertyInfo.setter;
-        }
     }
     
     if (meta->_getter && meta->_setter) {
@@ -585,7 +581,7 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
                         NSData *data = [(NSString *)value dataUsingEncoding:NSUTF8StringEncoding];
                         ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, data);
                     }
-                } break;                    
+                } break;
                 case YYEncodingTypeNSArray:{
                     if (meta->_genericCls) {
                         NSArray *valueArr = nil;
