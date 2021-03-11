@@ -1459,22 +1459,6 @@ static NSString *ModelDescription(NSObject *model) {
     return self;
 }
 
-- (NSUInteger)yy_modelHash {
-    if (self == (id)kCFNull) return [self hash];
-    _YYModelMeta *modelMeta = [_YYModelMeta metaWithClass:self.class];
-    if (modelMeta->_nsType) return [self hash];
-    
-    NSUInteger value = 0;
-    NSUInteger count = 0;
-    for (_YYModelPropertyMeta *propertyMeta in modelMeta->_allPropertyMetas) {
-        if (!propertyMeta->_isKVCCompatible) continue;
-        value ^= [[self valueForKey:NSStringFromSelector(propertyMeta->_getter)] hash];
-        count++;
-    }
-    if (count == 0) value = (long)((__bridge void *)self);
-    return value;
-}
-
 - (NSString *)yy_modelDescription {
     return ModelDescription(self);
 }

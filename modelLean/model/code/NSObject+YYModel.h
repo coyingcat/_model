@@ -100,13 +100,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable id)yy_modelCopy;
 
 /**
- Get a hash code with the receiver's properties.
- 
- @return Hash code.
- */
-- (NSUInteger)yy_modelHash;
-
-/**
  Description method for debugging purposes based on properties.
  
  @return A string that describes the contents of the receiver.
