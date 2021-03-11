@@ -467,8 +467,6 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
     _keyMappedCount = _allPropertyMetas.count;
     _nsType = YYClassGetNSType(cls);
     
-    _hasCustomTransformFromDictionary = ([cls instancesRespondToSelector:@selector(modelCustomTransformFromDictionary:)]);
-    
     return self;
 }
 
@@ -1338,10 +1336,6 @@ static NSString *ModelDescription(NSObject *model) {
                              CFRangeMake(0, modelMeta->_keyMappedCount),
                              ModelSetWithPropertyMetaArrayFunction,
                              &context);
-    }
-    
-    if (modelMeta->_hasCustomTransformFromDictionary) {
-        return [((id<YYModel>)self) modelCustomTransformFromDictionary:dic];
     }
     return YES;
 }
