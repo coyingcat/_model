@@ -1029,21 +1029,6 @@ static id ModelToJSONObjectRecursive(NSObject *model) {
     }];
     return result;
 }
-
-/// Add indent to string (exclude first line)
-static NSMutableString *ModelDescriptionAddIndent(NSMutableString *desc, NSUInteger indent) {
-    for (NSUInteger i = 0, max = desc.length; i < max; i++) {
-        unichar c = [desc characterAtIndex:i];
-        if (c == '\n') {
-            for (NSUInteger j = 0; j < indent; j++) {
-                [desc insertString:@"    " atIndex:i + 1];
-            }
-            i += indent * 4;
-            max += indent * 4;
-        }
-    }
-    return desc;
-}
     
 @implementation NSObject (YYModel)
 
