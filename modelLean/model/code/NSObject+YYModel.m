@@ -349,29 +349,6 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
     if (!classInfo) return nil;
     self = [super init];
     
-    // Get container property's generic class
-    NSDictionary *genericMapper = nil;
-    if ([cls respondsToSelector:@selector(modelContainerPropertyGenericClass)]) {
-        genericMapper = [(id<YYModel>)cls modelContainerPropertyGenericClass];
-        if (genericMapper) {
-            NSMutableDictionary *tmp = [NSMutableDictionary new];
-            [genericMapper enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-                if (![key isKindOfClass:[NSString class]]) return;
-                Class meta = object_getClass(obj);
-                if (!meta) return;
-                if (class_isMetaClass(meta)) {
-                    tmp[key] = obj;
-                } else if ([obj isKindOfClass:[NSString class]]) {
-                    Class cls = NSClassFromString(obj);
-                    if (cls) {
-                        tmp[key] = cls;
-                    }
-                }
-            }];
-            genericMapper = tmp;
-        }
-    }
-    
     // Create all property metas.
     NSMutableDictionary *allPropertyMetas = [NSMutableDictionary new];
     YYClassInfo *curClassInfo = classInfo;
@@ -381,7 +358,7 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
          
             _YYModelPropertyMeta *meta = [_YYModelPropertyMeta metaWithClassInfo:classInfo
                                                                     propertyInfo:propertyInfo
-                                                                         generic:genericMapper[propertyInfo.name]];
+                                                                         generic: nil];
             if (!meta || !meta->_name) continue;
             if (!meta->_getter || !meta->_setter) continue;
             if (allPropertyMetas[meta->_name]) continue;
