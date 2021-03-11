@@ -24,8 +24,6 @@ typedef NS_ENUM (NSUInteger, YYEncodingNSType) {
     YYEncodingTypeNSNumber,
     
     YYEncodingTypeNSData,
-    
-    YYEncodingTypeNSURL,
     YYEncodingTypeNSArray,
     
     YYEncodingTypeNSDictionary
@@ -41,8 +39,6 @@ static force_inline YYEncodingNSType YYClassGetNSType(Class cls){
     
     
     if ([cls isSubclassOfClass:[NSData class]]) return YYEncodingTypeNSData;
-    
-    if ([cls isSubclassOfClass:[NSURL class]]) return YYEncodingTypeNSURL;
     
     if ([cls isSubclassOfClass:[NSArray class]]) return YYEncodingTypeNSArray;
     
@@ -589,21 +585,7 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
                         NSData *data = [(NSString *)value dataUsingEncoding:NSUTF8StringEncoding];
                         ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, data);
                     }
-                } break;
-                case YYEncodingTypeNSURL: {
-                    if ([value isKindOfClass:[NSURL class]]) {
-                        ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, value);
-                    } else if ([value isKindOfClass:[NSString class]]) {
-                        NSCharacterSet *set = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-                        NSString *str = [value stringByTrimmingCharactersInSet:set];
-                        if (str.length == 0) {
-                            ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, nil);
-                        } else {
-                            ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, [[NSURL alloc] initWithString:str]);
-                        }
-                    }
-                } break;
-                    
+                } break;                    
                 case YYEncodingTypeNSArray:{
                     if (meta->_genericCls) {
                         NSArray *valueArr = nil;
