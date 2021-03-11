@@ -1028,10 +1028,8 @@ static id ModelToJSONObjectRecursive(NSObject *model) {
                 superDic = subDic;
                 subDic = nil;
             }
-        } else {
-            if (!dic[propertyMeta->_mappedToKey]) {
-                dic[propertyMeta->_mappedToKey] = value;
-            }
+        } else if (!dic[propertyMeta->_mappedToKey]) {
+            dic[propertyMeta->_mappedToKey] = value;
         }
     }];
     return result;
