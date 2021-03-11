@@ -250,9 +250,7 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
 
 @end
 
-@implementation YYClassInfo {
-    BOOL _needUpdate;
-}
+@implementation YYClassInfo
 
 - (instancetype)initWithClass:(Class)cls {
     if (!cls) return nil;
@@ -314,11 +312,7 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
     if (!_ivarInfos) _ivarInfos = @{};
     if (!_methodInfos) _methodInfos = @{};
     if (!_propertyInfos) _propertyInfos = @{};
-    
-    _needUpdate = NO;
 }
-
-
 
 + (instancetype)classInfoWithClass:(Class)cls {
     if (!cls) return nil;
@@ -333,9 +327,6 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
     });
     dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);
     YYClassInfo *info = CFDictionaryGetValue(class_isMetaClass(cls) ? metaCache : classCache, (__bridge const void *)(cls));
-    if (info && info->_needUpdate) {
-        [info _update];
-    }
     dispatch_semaphore_signal(lock);
     if (!info) {
         info = [[YYClassInfo alloc] initWithClass:cls];
@@ -347,7 +338,4 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
     }
     return info;
 }
-
-
-
 @end
