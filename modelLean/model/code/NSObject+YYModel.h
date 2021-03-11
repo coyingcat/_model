@@ -124,18 +124,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-/**
- If the default model transform does not fit to your model class, implement one or
- more method in this protocol to change the default key-value transform process.
- There's no need to add '<YYModel>' to your class header.
- */
-@protocol YYModel <NSObject>
-@optional
-
-
-+ (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper;
-
-
-@end
-
 NS_ASSUME_NONNULL_END
