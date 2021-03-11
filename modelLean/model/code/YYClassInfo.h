@@ -81,27 +81,7 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding);
 
 
 @class YYClassIvarInfo;
-
-/**
- Method information.
- */
-@interface YYClassMethodInfo : NSObject
-@property (nonatomic, assign, readonly) Method method;                  ///< method opaque struct
-@property (nonatomic, strong, readonly) NSString *name;                 ///< method name
-@property (nonatomic, assign, readonly) SEL sel;                        ///< method's selector
-@property (nonatomic, assign, readonly) IMP imp;                        ///< method's implementation
-@property (nonatomic, strong, readonly) NSString *typeEncoding;         ///< method's parameter and return types
-@property (nonatomic, strong, readonly) NSString *returnTypeEncoding;   ///< return value's type
-@property (nullable, nonatomic, strong, readonly) NSArray<NSString *> *argumentTypeEncodings; ///< array of arguments' type
-
-/**
- Creates and returns a method info object.
- 
- @param method method opaque struct
- @return A new object, or nil if an error occurs.
- */
-- (instancetype)initWithMethod:(Method)method;
-@end
+@class YYClassMethodInfo;
 
 
 /**
