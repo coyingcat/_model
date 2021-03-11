@@ -92,13 +92,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable id)yy_modelToJSONObject;
 
-/**
- Copy a instance with the receiver's properties.
- 
- @return A copied instance, or nil if an error occurs.
- */
-- (nullable id)yy_modelCopy;
-
 @end
 
 NS_ASSUME_NONNULL_END
