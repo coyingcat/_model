@@ -156,15 +156,6 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding);
 @property (nullable, nonatomic, strong, readonly) NSDictionary<NSString *, YYClassMethodInfo *> *methodInfos; ///< methods
 @property (nullable, nonatomic, strong, readonly) NSDictionary<NSString *, YYClassPropertyInfo *> *propertyInfos; ///< properties
 
-
-/**
- If this method returns `YES`, you should stop using this instance and call
- `classInfoWithClass` or `classInfoWithClassName` to get the updated class info.
- 
- @return Whether this class info need update.
- */
-- (BOOL)needUpdate;
-
 /**
  Get the class info of a specified Class.
  

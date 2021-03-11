@@ -318,9 +318,7 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
     _needUpdate = NO;
 }
 
-- (BOOL)needUpdate {
-    return _needUpdate;
-}
+
 
 + (instancetype)classInfoWithClass:(Class)cls {
     if (!cls) return nil;
