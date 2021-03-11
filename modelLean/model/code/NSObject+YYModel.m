@@ -405,6 +405,13 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
     _YYModelMeta *meta = CFDictionaryGetValue(cache, (__bridge const void *)(cls));
     dispatch_semaphore_signal(lock);
     if (!meta || meta->_classInfo.needUpdate) {
+        // NSLog(@"%d", meta->_classInfo.needUpdate);
+        if (meta){
+            NSLog(@"有吗 ");
+        }
+        else{
+            NSLog(@"无有 <nil>");
+        }
         meta = [[_YYModelMeta alloc] initWithClass:cls];
         if (meta) {
             dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);
