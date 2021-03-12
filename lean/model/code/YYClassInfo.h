@@ -121,7 +121,7 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding);
 @property (nullable, nonatomic, strong, readonly) YYClassInfo *superClassInfo; ///< super class's class info
 
 @property (nullable, nonatomic, strong, readonly) NSDictionary<NSString *, YYClassIvarInfo *> *ivarInfos; ///< ivars
-@property (nullable, nonatomic, strong, readonly) NSDictionary<NSString *, YYClassMethodInfo *> *methodInfos; ///< methods
+
 @property (nullable, nonatomic, strong, readonly) NSDictionary<NSString *, YYClassPropertyInfo *> *propertyInfos; ///< properties
 
 /**

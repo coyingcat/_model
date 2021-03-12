@@ -140,69 +140,6 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
 
 @end
 
-
-/**
- Method information.
- */
-@interface YYClassMethodInfo : NSObject
-@property (nonatomic, assign, readonly) Method method;                  ///< method opaque struct
-@property (nonatomic, strong, readonly) NSString *name;                 ///< method name
-@property (nonatomic, assign, readonly) SEL sel;                        ///< method's selector
-@property (nonatomic, assign, readonly) IMP imp;                        ///< method's implementation
-@property (nonatomic, strong, readonly) NSString *typeEncoding;         ///< method's parameter and return types
-@property (nonatomic, strong, readonly) NSString *returnTypeEncoding;   ///< return value's type
-@property (nullable, nonatomic, strong, readonly) NSArray<NSString *> *argumentTypeEncodings; ///< array of arguments' type
-
-/**
- Creates and returns a method info object.
- 
- @param method method opaque struct
- @return A new object, or nil if an error occurs.
- */
-- (instancetype)initWithMethod:(Method)method;
-@end
-
-
-
-
-
-@implementation YYClassMethodInfo
-
-- (instancetype)initWithMethod:(Method)method {
-    if (!method) return nil;
-    self = [super init];
-    _method = method;
-    _sel = method_getName(method);
-    _imp = method_getImplementation(method);
-    const char *name = sel_getName(_sel);
-    if (name) {
-        _name = [NSString stringWithUTF8String:name];
-    }
-    const char *typeEncoding = method_getTypeEncoding(method);
-    if (typeEncoding) {
-        _typeEncoding = [NSString stringWithUTF8String:typeEncoding];
-    }
-    char *returnType = method_copyReturnType(method);
-    if (returnType) {
-        _returnTypeEncoding = [NSString stringWithUTF8String:returnType];
-        free(returnType);
-    }
-    unsigned int argumentCount = method_getNumberOfArguments(method);
-    if (argumentCount > 0) {
-        NSMutableArray *argumentTypes = [NSMutableArray new];
-        for (unsigned int i = 0; i < argumentCount; i++) {
-            char *argumentType = method_copyArgumentType(method, i);
-            NSString *type = argumentType ? [NSString stringWithUTF8String:argumentType] : nil;
-            [argumentTypes addObject:type ? type : @""];
-            if (argumentType) free(argumentType);
-        }
-        _argumentTypeEncodings = argumentTypes;
-    }
-    return self;
-}
-
-@end
-
 @implementation YYClassPropertyInfo
 
 - (instancetype)initWithProperty:(objc_property_t)property {
@@ -325,21 +262,9 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
 
 - (void)_update {
     _ivarInfos = nil;
-    _methodInfos = nil;
     _propertyInfos = nil;
     
     Class cls = self.cls;
-    unsigned int methodCount = 0;
-    Method *methods = class_copyMethodList(cls, &methodCount);
-    if (methods) {
-        NSMutableDictionary *methodInfos = [NSMutableDictionary new];
-        _methodInfos = methodInfos;
-        for (unsigned int i = 0; i < methodCount; i++) {
-            YYClassMethodInfo *info = [[YYClassMethodInfo alloc] initWithMethod:methods[i]];
-            if (info.name) methodInfos[info.name] = info;
-        }
-        free(methods);
-    }
     unsigned int propertyCount = 0;
     objc_property_t *properties = class_copyPropertyList(cls, &propertyCount);
     if (properties) {
@@ -365,7 +290,6 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
     }
     
     if (!_ivarInfos) _ivarInfos = @{};
-    if (!_methodInfos) _methodInfos = @{};
     if (!_propertyInfos) _propertyInfos = @{};
 }
 
