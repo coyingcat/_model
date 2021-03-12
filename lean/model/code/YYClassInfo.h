@@ -14,6 +14,21 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Foundation Class Type
+typedef NS_ENUM (NSUInteger, YYEncodingNSType) {
+    YYEncodingTypeNSUnknown = 0,
+    YYEncodingTypeNSString,
+    
+    YYEncodingTypeNSValue,
+    YYEncodingTypeNSNumber,
+    
+    YYEncodingTypeNSData,
+    YYEncodingTypeNSArray,
+    
+    YYEncodingTypeNSDictionary
+};
+
+
 /**
  Type encoding's type.
  */
@@ -118,6 +133,9 @@ typedef NS_OPTIONS(NSUInteger, YYEncodingType) {
 
 
 @end
+
+
+
 
 NS_ASSUME_NONNULL_END
 // YYClassInfo, 包含 YYClassIvarInfo、YYClassMethodInfo 、YYClassPropertyInfo
