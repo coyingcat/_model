@@ -901,7 +901,7 @@ static id ModelToJSONObjectRecursive(NSObject *model) {
 }
     
 @implementation NSObject (YYModel)
-
+// ab
 + (NSDictionary *)_yy_dictionaryWithJSON:(id)json {
     if (!json || json == (id)kCFNull) return nil;
     NSDictionary *dic = nil;
@@ -919,12 +919,12 @@ static id ModelToJSONObjectRecursive(NSObject *model) {
     }
     return dic;
 }
-
+// a
 + (instancetype)yy_modelWithJSON:(id)json {
     NSDictionary *dic = [self _yy_dictionaryWithJSON:json];
     return [self yy_modelWithDictionary:dic];
 }
-
+// ac
 + (instancetype)yy_modelWithDictionary:(NSDictionary *)dictionary {
     if (!dictionary || dictionary == (id)kCFNull) return nil;
     if (![dictionary isKindOfClass:[NSDictionary class]]) return nil;
@@ -934,7 +934,7 @@ static id ModelToJSONObjectRecursive(NSObject *model) {
     if ([one yy_modelSetWithDictionary:dictionary]) return one;
     return nil;
 }
-
+// b
 - (BOOL)yy_modelSetWithDictionary:(NSDictionary *)dic {
     if (!dic || dic == (id)kCFNull) return NO;
     if (![dic isKindOfClass:[NSDictionary class]]) return NO;
