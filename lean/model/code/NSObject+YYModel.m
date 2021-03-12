@@ -668,10 +668,8 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
                         }
                     } else {
                         cls = object_getClass(value);
-                        if (cls) {
-                            if (class_isMetaClass(cls)) {
+                        if ( (cls) && (class_isMetaClass(cls)) ){
                                 ((void (*)(id, SEL, Class))(void *) objc_msgSend)((id)model, meta->_setter, (Class)value);
-                            }
                         }
                     }
                 }
