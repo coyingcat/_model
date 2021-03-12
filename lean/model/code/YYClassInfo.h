@@ -66,18 +66,6 @@ typedef NS_OPTIONS(NSUInteger, YYEncodingType) {
     YYEncodingTypePropertyDynamic      = 1 << 23, ///< @dynamic
 };
 
-/**
- Get the type from a Type-Encoding string.
- 
- @discussion See also:
- https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html
- https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html
- 
- @param typeEncoding  A Type-Encoding string.
- @return The encoding type.
- */
-YYEncodingType YYEncodingGetType(const char *typeEncoding);
-
 
 
 @class YYClassIvarInfo;
@@ -119,8 +107,6 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding);
 @property (nonatomic, readonly) BOOL isMeta; ///< whether this class is meta class
 @property (nonatomic, strong, readonly) NSString *name; ///< class name
 @property (nullable, nonatomic, strong, readonly) YYClassInfo *superClassInfo; ///< super class's class info
-
-@property (nullable, nonatomic, strong, readonly) NSDictionary<NSString *, YYClassIvarInfo *> *ivarInfos; ///< ivars
 
 @property (nullable, nonatomic, strong, readonly) NSDictionary<NSString *, YYClassPropertyInfo *> *propertyInfos; ///< properties
 

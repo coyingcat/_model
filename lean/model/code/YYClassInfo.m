@@ -12,7 +12,25 @@
 #import "YYClassInfo.h"
 #import <objc/runtime.h>
 
-YYEncodingType YYEncodingGetType(const char *typeEncoding) {
+
+/**
+ 
+ 
+ Get the type from a Type-Encoding string.
+ 
+ @discussion See also:
+ https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html
+ https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html
+ 
+ @param typeEncoding  A Type-Encoding string.
+ @return The encoding type.
+ 
+ 
+ */
+
+
+
+YYEncodingType YYEncodingGetType(const char *typeEncoding){
     char *type = (char *)typeEncoding;
     if (!type) return YYEncodingTypeUnknown;
     size_t len = strlen(type);
@@ -89,56 +107,6 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
         default: return YYEncodingTypeUnknown | qualifier;
     }
 }
-
-
-
-/**
- Instance variable information.
- */
-@interface YYClassIvarInfo : NSObject
-
-
-@property (nonatomic, assign, readonly) Ivar ivar;              ///< ivar opaque struct
-@property (nonatomic, strong, readonly) NSString *name;         ///< Ivar's name
-@property (nonatomic, assign, readonly) ptrdiff_t offset;       ///< Ivar's offset
-@property (nonatomic, strong, readonly) NSString *typeEncoding; ///< Ivar's type encoding
-@property (nonatomic, assign, readonly) YYEncodingType type;    ///< Ivar's type
-
-/**
- Creates and returns an ivar info object.
- 
- @param ivar ivar opaque struct
- @return A new object, or nil if an error occurs.
- */
-- (instancetype)initWithIvar:(Ivar)ivar;
-@end
-
-
-
-
-
-
-
-@implementation YYClassIvarInfo
-
-- (instancetype)initWithIvar:(Ivar)ivar {
-    if (!ivar) return nil;
-    self = [super init];
-    _ivar = ivar;
-    const char *name = ivar_getName(ivar);
-    if (name) {
-        _name = [NSString stringWithUTF8String:name];
-    }
-    _offset = ivar_getOffset(ivar);
-    const char *typeEncoding = ivar_getTypeEncoding(ivar);
-    if (typeEncoding) {
-        _typeEncoding = [NSString stringWithUTF8String:typeEncoding];
-        _type = YYEncodingGetType(typeEncoding);
-    }
-    return self;
-}
-
-@end
 
 @implementation YYClassPropertyInfo
 
@@ -261,7 +229,6 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
 }
 
 - (void)_update {
-    _ivarInfos = nil;
     _propertyInfos = nil;
     
     Class cls = self.cls;
@@ -277,19 +244,6 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
         free(properties);
     }
     
-    unsigned int ivarCount = 0;
-    Ivar *ivars = class_copyIvarList(cls, &ivarCount);
-    if (ivars) {
-        NSMutableDictionary *ivarInfos = [NSMutableDictionary new];
-        _ivarInfos = ivarInfos;
-        for (unsigned int i = 0; i < ivarCount; i++) {
-            YYClassIvarInfo *info = [[YYClassIvarInfo alloc] initWithIvar:ivars[i]];
-            if (info.name) ivarInfos[info.name] = info;
-        }
-        free(ivars);
-    }
-    
-    if (!_ivarInfos) _ivarInfos = @{};
     if (!_propertyInfos) _propertyInfos = @{};
 }
 
