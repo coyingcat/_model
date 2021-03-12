@@ -14,8 +14,6 @@
 #import <objc/message.h>
 
 
-#import "Object+YYModel.h"
-
 #define force_inline __inline__ __attribute__((always_inline))
 
 
