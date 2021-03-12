@@ -315,7 +315,7 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
     /// The number of mapped key (and key path), same to _mapper.count.
     NSUInteger _keyMappedCount;
     /// Model class type.
-    YYEncodingNSType _nsType;
+    YYEncodingNSType _nsTypeY;
 }
 @end
 
@@ -360,7 +360,7 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
     if (keyPathPropertyMetas) _keyPathPropertyMetas = keyPathPropertyMetas;
     if (multiKeysPropertyMetas) _multiKeysPropertyMetas = multiKeysPropertyMetas;
     _keyMappedCount = _allPropertyMetas.count;
-    _nsType = YYClassGetNSType(cls);
+    _nsTypeY = YYClassGetNSType(cls);
     
     return self;
 }
