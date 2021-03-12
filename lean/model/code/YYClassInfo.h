@@ -66,12 +66,6 @@ typedef NS_OPTIONS(NSUInteger, YYEncodingType) {
     YYEncodingTypePropertyDynamic      = 1 << 23, ///< @dynamic
 };
 
-
-
-@class YYClassIvarInfo;
-@class YYClassMethodInfo;
-
-
 /**
  Property information.
  */
