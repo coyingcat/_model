@@ -28,6 +28,16 @@
     NSString * path = [NSBundle.mainBundle pathForResource: @"one" ofType: @"json"];
     NSString* jsonString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     NSData* jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+     
+    Book * page = [Book yy_modelWithJSON: jsonData];
+    NSDictionary * dict = [page yy_modelToJSONObject];
+    NSLog(@"%@", dict);
+}
+
+- (void) first{
+    NSString * path = [NSBundle.mainBundle pathForResource: @"one" ofType: @"json"];
+    NSString* jsonString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    NSData* jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *jsonError;
     NSArray *json = [NSJSONSerialization JSONObjectWithData: jsonData options:kNilOptions error:&jsonError];
      
@@ -35,7 +45,6 @@
     NSDictionary * dict = [page yy_modelToJSONObject];
     NSLog(@"%@", dict);
 }
-
 
 
 - (void) one{
