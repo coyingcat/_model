@@ -169,9 +169,6 @@ typedef NS_OPTIONS(NSUInteger, YYEncodingType) {
 }
 
 
-+ (instancetype)metaWithClassInfo:(YYClassInfo *)classInfo propertyInfo:(YYClassPropertyInfo *)propertyInfo generic:(Class)generic;
-
-
 
 @end
 
@@ -200,11 +197,6 @@ typedef NS_OPTIONS(NSUInteger, YYEncodingType) {
 + (instancetype)metaWithClass:(Class)cls;
 
 @end
-
-
-
-static YYEncodingNSType YYClassGetNSType(Class cls);
-static BOOL YYEncodingTypeIsCNumber(YYEncodingType type);
 
 NS_ASSUME_NONNULL_END
 // YYClassInfo, 包含 YYClassIvarInfo、YYClassMethodInfo 、YYClassPropertyInfo
