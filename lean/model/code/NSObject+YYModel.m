@@ -182,7 +182,7 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
     @package
     NSString *_name;             ///< property's name
     YYEncodingType _type;        ///< property's type
-    YYEncodingNSType _nsType;    ///< property's Foundation type
+    YYEncodingNSType _nsTypeX;    ///< property's Foundation type
     BOOL _isCNumber;             ///< is c number type
     Class _cls;                  ///< property's class, or nil
     Class _genericCls;           ///< container's generic class, or nil if threr's no generic class
@@ -225,7 +225,7 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
     meta->_genericCls = generic;
     
     if ((meta->_type & YYEncodingTypeMask) == YYEncodingTypeObject) {
-        meta->_nsType = YYClassGetNSType(propertyInfo.cls);
+        meta->_nsTypeX = YYClassGetNSType(propertyInfo.cls);
     } else {
         meta->_isCNumber = YYEncodingTypeIsCNumber(meta->_type);
     }
@@ -536,11 +536,11 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
         NSNumber *num = YYNSNumberCreateFromID(value);
         ModelSetNumberToProperty(model, num, meta);
         if (num != nil) [num class]; // hold the number
-    } else if (meta->_nsType) {
+    } else if (meta->_nsTypeX) {
         if (value == (id)kCFNull) {
             ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, (id)nil);
         } else {
-            switch (meta->_nsType) {
+            switch (meta->_nsTypeX) {
                 case YYEncodingTypeNSString:{
                     if ([value isKindOfClass:[NSString class]]) {
                             ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, value);
@@ -564,7 +564,7 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
                     
                 case YYEncodingTypeNSValue:
                 case YYEncodingTypeNSNumber:{
-                    if (meta->_nsType == YYEncodingTypeNSNumber) {
+                    if (meta->_nsTypeX == YYEncodingTypeNSNumber) {
                         ((void (*)(id, SEL, id))(void *) objc_msgSend)((id)model, meta->_setter, YYNSNumberCreateFromID(value));
                     } else if ([value isKindOfClass:[NSValue class]]) {
                         // YYEncodingTypeNSValue
@@ -843,7 +843,7 @@ static id ModelToJSONObjectRecursive(NSObject *model) {
         id value = nil;
         if (propertyMeta->_isCNumber) {
             value = ModelCreateNumberFromProperty(model, propertyMeta);
-        } else if (propertyMeta->_nsType) {
+        } else if (propertyMeta->_nsTypeX) {
             id v = ((id (*)(id, SEL))(void *) objc_msgSend)((id)model, propertyMeta->_getter);
             value = ModelToJSONObjectRecursive(v);
         } else {
