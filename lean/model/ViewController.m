@@ -30,15 +30,7 @@
     
    // [self blogOne];
     
-    Book * page = [Book new];
-    page.name = @"天书";
-    page.pages = 245;
-    Author * writer = [Author new];
-    writer.name = @"孙大圣";
-    writer.birthday = @"不晓得";
-    page.author = writer;
-    NSDictionary * dict = [page yy_modelToJSONObject];
-    NSLog(@"%@", dict);
+    [self blogTest];
     
 }
 
@@ -54,6 +46,19 @@
     NSLog(@"%@", dict);
 }
 
+
+
+- (void)blogTest{
+    Book * page = [Book new];
+    page.name = @"天书";
+    page.pages = 245;
+    Author * writer = [Author new];
+    writer.name = @"孙大圣";
+    writer.birthday = @"不晓得";
+    page.author = writer;
+    NSDictionary * dict = [page yy_modelToJSONObject];
+    NSLog(@"%@", dict);
+}
 
 
 - (void) first{
