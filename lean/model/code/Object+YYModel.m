@@ -414,7 +414,10 @@ typedef struct {
  @param _value   should not be nil.
  @param _context _context.modelMeta and _context.model should not be nil.
  */
+
+//  po ((ModelSetContext *) _context)->dictionary
 static void ModelSetWithDictionaryFunction(const void *_key, const void *_value, void *_context) {
+    // NSLog(@"111222");
     ModelSetContext *context = _context;
     __unsafe_unretained _YYModelMeta *meta = (__bridge _YYModelMeta *)(context->modelMeta);
     __unsafe_unretained _YYModelPropertyMeta *propertyMeta = [meta->_mapper objectForKey:(__bridge id)(_key)];

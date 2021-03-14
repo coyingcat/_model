@@ -434,6 +434,8 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding){
     NSMutableDictionary *allPropertyMetas = [NSMutableDictionary new];
     YYClassInfo *curClassInfo = classInfo;
     while (curClassInfo && curClassInfo.superCls != nil) { // recursive parse super class, but ignore root class (NSObject/NSProxy)
+        
+        
         for (YYClassPropertyInfo *propertyInfo in curClassInfo.propertyInfos.allValues) {
             if (!propertyInfo.name) continue;
          
@@ -467,6 +469,8 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding){
     _keyMappedCount = _allPropertyMetas.count;
     return self;
 }
+
+//  po ((_YYModelPropertyMeta * )(allPropertyMetas[@"author"]))->_mappedToKey
 
 /// Returns the cached model class meta
 + (instancetype)metaWithClass:(Class)cls {
