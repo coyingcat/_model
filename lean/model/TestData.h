@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 // Model: (no need to do anything)
 @interface Author : NSObject
 @property NSString *name;
-@property NSDate *birthday;
+@property NSString *birthday;
 @end
 
     

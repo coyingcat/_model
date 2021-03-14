@@ -28,6 +28,23 @@
     // [self testBlock];
     // [self two];
     
+   // [self blogOne];
+    
+    Book * page = [Book new];
+    page.name = @"天书";
+    page.pages = 245;
+    Author * writer = [Author new];
+    writer.name = @"孙大圣";
+    writer.birthday = @"不晓得";
+    page.author = writer;
+    NSDictionary * dict = [page yy_modelToJSONObject];
+    NSLog(@"%@", dict);
+    
+}
+
+
+
+- (void) blogOne{
     NSString * path = [NSBundle.mainBundle pathForResource: @"one" ofType: @"json"];
     NSString* jsonString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     NSData* jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
@@ -36,6 +53,8 @@
     NSDictionary * dict = [page yy_modelToJSONObject];
     NSLog(@"%@", dict);
 }
+
+
 
 - (void) first{
     NSString * path = [NSBundle.mainBundle pathForResource: @"one" ofType: @"json"];
