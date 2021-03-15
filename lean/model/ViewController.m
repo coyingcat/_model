@@ -28,9 +28,9 @@
     // [self testBlock];
     // [self two];
     
-   // [self blogOne];
+    [self blogOne];
     
-    [self blogTest];
+    //[self blogTest];
     
 }
 
