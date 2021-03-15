@@ -21,7 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Book : NSObject
 @property NSString *name;
 @property NSUInteger pages;
-@property Author *author;
+@property Author *reporter;
+
 @end
 
 

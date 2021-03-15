@@ -10,8 +10,19 @@
 
 
 @implementation Author
+
+
 @end
 
 
 @implementation Book
+
+
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"pages" : @"p",
+             @"reporter" : @[@"author",@"writer"]};
+}
+
+
+
 @end
