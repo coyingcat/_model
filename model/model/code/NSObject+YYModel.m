@@ -562,7 +562,7 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
                 }
                 propertyMeta->_next = mapper[mappedToKey] ?: nil;
                 mapper[mappedToKey] = propertyMeta;
-                
+                // if ([mappedToKey isKindOfClass:[NSString class]])
             } else if ([mappedToKey isKindOfClass:[NSArray class]]) {
                 
                 NSMutableArray *mappedToKeyArray = [NSMutableArray new];
@@ -589,9 +589,10 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
                 
                 propertyMeta->_next = mapper[mappedToKey] ?: nil;
                 mapper[mappedToKey] = propertyMeta;
+                // if ([mappedToKey isKindOfClass:[NSArray class]])
             }
-        }];
-    }
+        }]; // enumerateKeysAndObjectsUsingBlock
+    } // if ([cls respondsToSelector:@selector(modelCustomPropertyMapper)])
     
     [allPropertyMetas enumerateKeysAndObjectsUsingBlock:^(NSString *name, _YYModelPropertyMeta *propertyMeta, BOOL *stop) {
         propertyMeta->_mappedToKey = name;
