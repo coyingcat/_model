@@ -13,6 +13,9 @@
 
 #import "TestData.h"
 
+
+#import "NSDictionary+Log.h"
+
 @interface ViewController ()
 
 @end
@@ -33,7 +36,7 @@
      
     Book * page = [Book yy_modelWithJSON: json];
     NSDictionary * dict = [page yy_modelToJSONObject];
-    NSLog(@"%@", dict);
+    NSLog(@"%@", [dict debugDescription]);
 }
 
 
