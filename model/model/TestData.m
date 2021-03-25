@@ -26,3 +26,17 @@
 
 
 @end
+
+
+@implementation Character
+
+
+@end
+
+
+@implementation BookTwo
+
+
+
+
+@end

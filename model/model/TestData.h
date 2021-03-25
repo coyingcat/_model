@@ -27,4 +27,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
+@interface Character : NSObject
+@property NSString *name;
+@property NSString *birthday;
+@end
+
+    
+@interface BookTwo : NSObject
+@property NSString *name;
+@property NSUInteger pages;
+@property Author *reporter;
+
+@end
+
+
+
 NS_ASSUME_NONNULL_END

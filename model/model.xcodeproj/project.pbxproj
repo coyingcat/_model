@@ -21,6 +21,7 @@
 		265F03BA25F85A3500B7BB16 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 265F03B725F85A3500B7BB16 /* YYClassInfo.m */; };
 		265F03BE25F85B6200B7BB16 /* YYTestAutoTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 265F03BD25F85B6200B7BB16 /* YYTestAutoTypeModel.m */; };
 		265F03C625F86B6300B7BB16 /* YYTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 265F03C525F86B6300B7BB16 /* YYTestHelper.m */; };
+		26717978260C2B84003D6750 /* two.json in Resources */ = {isa = PBXBuildFile; fileRef = 26717977260C2B84003D6750 /* two.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		265F03C125F8627200B7BB16 /* ForBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForBlock.h; sourceTree = "<group>"; };
 		265F03C425F86B6300B7BB16 /* YYTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTestHelper.h; sourceTree = "<group>"; };
 		265F03C525F86B6300B7BB16 /* YYTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTestHelper.m; sourceTree = "<group>"; };
+		26717977260C2B84003D6750 /* two.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = two.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,26 +94,27 @@
 		265F039825F859FB00B7BB16 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				263552C0260B3CF7001C0484 /* Util */,
 				265F039925F859FB00B7BB16 /* AppDelegate.h */,
 				265F039A25F859FB00B7BB16 /* AppDelegate.m */,
-				260E995925F8B42500E2CE16 /* one.json */,
 				265F03A525F859FC00B7BB16 /* Assets.xcassets */,
 				265F03B325F85A3500B7BB16 /* code */,
 				265F03AA25F859FD00B7BB16 /* Info.plist */,
 				265F03A725F859FD00B7BB16 /* LaunchScreen.storyboard */,
 				265F03AB25F859FD00B7BB16 /* main.m */,
 				265F03A225F859FB00B7BB16 /* Main.storyboard */,
+				260E995925F8B42500E2CE16 /* one.json */,
 				265F039C25F859FB00B7BB16 /* SceneDelegate.h */,
 				265F039D25F859FB00B7BB16 /* SceneDelegate.m */,
+				260E995525F8B38C00E2CE16 /* TestData.h */,
+				260E995625F8B38C00E2CE16 /* TestData.m */,
+				26717977260C2B84003D6750 /* two.json */,
+				263552C0260B3CF7001C0484 /* Util */,
 				265F039F25F859FB00B7BB16 /* ViewController.h */,
 				265F03A025F859FB00B7BB16 /* ViewController.m */,
 				265F03BC25F85B6200B7BB16 /* YYTestAutoTypeModel.h */,
 				265F03BD25F85B6200B7BB16 /* YYTestAutoTypeModel.m */,
 				265F03C425F86B6300B7BB16 /* YYTestHelper.h */,
 				265F03C525F86B6300B7BB16 /* YYTestHelper.m */,
-				260E995525F8B38C00E2CE16 /* TestData.h */,
-				260E995625F8B38C00E2CE16 /* TestData.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 				265F03A925F859FD00B7BB16 /* LaunchScreen.storyboard in Resources */,
 				265F03A625F859FC00B7BB16 /* Assets.xcassets in Resources */,
 				260E995A25F8B42500E2CE16 /* one.json in Resources */,
+				26717978260C2B84003D6750 /* two.json in Resources */,
 				265F03A425F859FB00B7BB16 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
