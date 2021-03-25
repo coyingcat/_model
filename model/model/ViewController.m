@@ -28,7 +28,8 @@
     // [self testBlock];
     // [self two];
     
-    [self doFirst];
+    // [self doFirst];
+    [self doSecond];
 }
 
 - (void) doFirst{

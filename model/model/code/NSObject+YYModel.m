@@ -528,6 +528,7 @@ static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic
             if (allPropertyMetas[meta->_name]) continue;
             allPropertyMetas[meta->_name] = meta;
         }
+        
         curClassInfo = curClassInfo.superClassInfo;
     }
     if (allPropertyMetas.count) _allPropertyMetas = allPropertyMetas.allValues.copy;
