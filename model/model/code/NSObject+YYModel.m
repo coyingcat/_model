@@ -293,7 +293,8 @@ static force_inline NSDateFormatter *YYISODateFormatter() {
 /// The dic should be NSDictionary, and the keyPath should not be nil.
 static force_inline id YYValueForKeyPath(__unsafe_unretained NSDictionary *dic, __unsafe_unretained NSArray *keyPaths) {
     id value = nil;
-    for (NSUInteger i = 0, max = keyPaths.count; i < max; i++) {
+    NSUInteger max = keyPaths.count;
+    for (NSUInteger i = 0; i < max; i++) {
         value = dic[keyPaths[i]];
         if (i + 1 < max) {
             if ([value isKindOfClass:[NSDictionary class]]) {
