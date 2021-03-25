@@ -28,15 +28,7 @@
     // [self testBlock];
     // [self two];
     
-    NSString * path = [NSBundle.mainBundle pathForResource: @"two" ofType: @"json"];
-    NSString* jsonString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    NSData* jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *jsonError;
-    NSArray *json = [NSJSONSerialization JSONObjectWithData: jsonData options:kNilOptions error:&jsonError];
-     
-    BookTwo * page = [BookTwo yy_modelWithJSON: json];
-    NSDictionary * dict = [page yy_modelToJSONObject];
-    NSLog(@"%@", [dict debugDescription]);
+    [self doFirst];
 }
 
 - (void) doFirst{
@@ -50,6 +42,23 @@
     NSDictionary * dict = [page yy_modelToJSONObject];
     NSLog(@"%@", [dict debugDescription]);
 }
+
+
+- (void) doSecond{
+    
+    NSString * path = [NSBundle.mainBundle pathForResource: @"two" ofType: @"json"];
+    NSString* jsonString = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    NSData* jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *jsonError;
+    NSArray *json = [NSJSONSerialization JSONObjectWithData: jsonData options:kNilOptions error:&jsonError];
+     
+    BookTwo * page = [BookTwo yy_modelWithJSON: json];
+    NSDictionary * dict = [page yy_modelToJSONObject];
+    NSLog(@"%@", [dict debugDescription]);
+    
+}
+
+
 
 - (void) one{
     YYTestModelToJSON * try = [[YYTestModelToJSON alloc] init];
