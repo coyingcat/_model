@@ -36,7 +36,10 @@
 
 @implementation BookTwo
 
-
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    // value should be Class or Class name.
+    return @{@"character" : [Character class] };
+}
 
 
 @end
