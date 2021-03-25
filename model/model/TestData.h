@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BookTwo : NSObject
 @property NSString *name;
 @property NSUInteger pages;
-@property Author *reporter;
+@property NSArray *character;
 
 @end
 
