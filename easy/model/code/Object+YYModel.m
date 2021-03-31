@@ -430,33 +430,6 @@ static void ModelSetWithDictionaryFunction(const void *_key, const void *_value,
     };
 }
 
-/**
- Apply function for model property meta, to set dictionary to model.
- 
- @param _propertyMeta should not be nil, _YYModelPropertyMeta.
- @param _context      _context.model and _context.dictionary should not be nil.
- */
-static void ModelSetWithPropertyMetaArrayFunction(const void *_propertyMeta, void *_context) {
-    ModelSetContext *context = _context;
-    __unsafe_unretained NSDictionary *dictionary = (__bridge NSDictionary *)(context->dictionary);
-    __unsafe_unretained _YYModelPropertyMeta *propertyMeta = (__bridge _YYModelPropertyMeta *)(_propertyMeta);
-    if (!propertyMeta->_setter) return;
-    id value = nil;
-    
-    if (propertyMeta->_mappedToKeyArray) {
-        value = YYValueForMultiKeys(dictionary, propertyMeta->_mappedToKeyArray);
-    } else if (propertyMeta->_mappedToKeyPath) {
-        value = YYValueForKeyPath(dictionary, propertyMeta->_mappedToKeyPath);
-    } else {
-        value = [dictionary objectForKey:propertyMeta->_mappedToKey];
-    }
-    
-    if (value) {
-        __unsafe_unretained id model = (__bridge id)(context->model);
-        ModelSetValueForProperty(model, value, propertyMeta);
-    }
-}
-
 
 @implementation NSObject (Model)
 // ab
@@ -499,28 +472,11 @@ static void ModelSetWithPropertyMetaArrayFunction(const void *_propertyMeta, voi
     
 
     _YYModelMeta *modelMeta = [_YYModelMeta metaWithClass:object_getClass(self)];
-    if (modelMeta->_keyMappedCount == 0) return NO;
-    
     ModelSetContext context = {0};
     context.modelMeta = (__bridge void *)(modelMeta);
     context.model = (__bridge void *)(self);
     context.dictionary = (__bridge void *)(dic);
-    
-    
-    if (modelMeta->_keyMappedCount >= CFDictionaryGetCount((CFDictionaryRef)dic)) {
-        CFDictionaryApplyFunction((CFDictionaryRef)dic, ModelSetWithDictionaryFunction, &context);
-        if (modelMeta->_keyPathPropertyMetas) {
-            CFArrayApplyFunction((CFArrayRef)modelMeta->_keyPathPropertyMetas,
-                                 CFRangeMake(0, CFArrayGetCount((CFArrayRef)modelMeta->_keyPathPropertyMetas)),
-                                 ModelSetWithPropertyMetaArrayFunction,
-                                 &context);
-        }
-    } else {
-        CFArrayApplyFunction((CFArrayRef)modelMeta->_allPropertyMetas,
-                             CFRangeMake(0, modelMeta->_keyMappedCount),
-                             ModelSetWithPropertyMetaArrayFunction,
-                             &context);
-    }
+    CFDictionaryApplyFunction((CFDictionaryRef)dic, ModelSetWithDictionaryFunction, &context);
     return YES;
 }
 

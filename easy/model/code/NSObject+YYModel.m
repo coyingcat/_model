@@ -133,7 +133,7 @@ static id ModelToJSONObjectRecursive(NSObject *model) {
     
     
     _YYModelMeta *modelMeta = [_YYModelMeta metaWithClass:[model class]];
-    if (!modelMeta || modelMeta->_keyMappedCount == 0) return nil;
+    if (!modelMeta) return nil;
     NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
     __unsafe_unretained NSMutableDictionary *dic = result; // avoid retain and release in block
     [modelMeta->_mapper enumerateKeysAndObjectsUsingBlock:^(NSString *propertyMappedKey, _YYModelPropertyMeta *propertyMeta, BOOL *stop) {

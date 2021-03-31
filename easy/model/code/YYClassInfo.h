@@ -181,10 +181,6 @@ typedef NS_OPTIONS(NSUInteger, YYEncodingType) {
     NSDictionary *_mapper;
     /// Array<_YYModelPropertyMeta>, all property meta of this model.
     NSArray *_allPropertyMetas;
-    /// Array<_YYModelPropertyMeta>, property meta which is mapped to a key path.
-    NSArray *_keyPathPropertyMetas;
-    /// The number of mapped key (and key path), same to _mapper.count.
-    NSUInteger _keyMappedCount;
     
 }
 

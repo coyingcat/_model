@@ -424,7 +424,7 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding){
     
     // create mapper
     NSMutableDictionary *mapper = [NSMutableDictionary new];
-    NSMutableArray *keyPathPropertyMetas = [NSMutableArray new];
+    
     [allPropertyMetas enumerateKeysAndObjectsUsingBlock:^(NSString *name, _YYModelPropertyMeta *propertyMeta, BOOL *stop) {
         propertyMeta->_mappedToKey = name;
         propertyMeta->_next = mapper[name] ?: nil;
@@ -432,8 +432,6 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding){
     }];
     
     if (mapper.count) _mapper = mapper;
-    if (keyPathPropertyMetas) _keyPathPropertyMetas = keyPathPropertyMetas;
-    _keyMappedCount = _allPropertyMetas.count;
     return self;
 }
 
