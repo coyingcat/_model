@@ -268,16 +268,8 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding){
         _metaCls = objc_getMetaClass(class_getName(cls));
     }
     _name = NSStringFromClass(cls);
-    [self _update];
-
-    _superClassInfo = [self.class classInfoWithClass:_superCls];
-    return self;
-}
-
-- (void)_update {
     _propertyInfos = nil;
     
-    Class cls = self.cls;
     unsigned int propertyCount = 0;
     objc_property_t *properties = class_copyPropertyList(cls, &propertyCount);
     if (properties) {
@@ -291,6 +283,9 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding){
     }
     
     if (!_propertyInfos) _propertyInfos = @{};
+
+    _superClassInfo = [self.class classInfoWithClass:_superCls];
+    return self;
 }
 
 + (instancetype)classInfoWithClass:(Class)cls {
