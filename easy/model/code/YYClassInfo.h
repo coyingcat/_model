@@ -156,7 +156,6 @@ typedef NS_OPTIONS(NSUInteger, YYEncodingType) {
     
     NSString *_mappedToKey;      ///< the key mapped to
     YYClassPropertyInfo *_info;  ///< property's info
-    _YYModelPropertyMeta *_next; ///< next meta if there are multiple properties mapped to the same key.
 }
 
 
