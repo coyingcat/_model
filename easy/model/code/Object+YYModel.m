@@ -379,12 +379,9 @@ static void ModelSetWithDictionaryFunction(const void *_key, const void *_value,
     __unsafe_unretained _YYModelMeta *meta = (__bridge _YYModelMeta *)(context->modelMeta);
     __unsafe_unretained _YYModelPropertyMeta *propertyMeta = [meta->_mapper objectForKey:(__bridge id)(_key)];
     __unsafe_unretained id model = (__bridge id)(context->model);
-    while (propertyMeta) {
-        if (propertyMeta->_setter) {
-            ModelSetValueForProperty(model, (__bridge __unsafe_unretained id)_value, propertyMeta);
-        }
-        propertyMeta = nil;
-    };
+    if (propertyMeta && propertyMeta->_setter) {
+        ModelSetValueForProperty(model, (__bridge __unsafe_unretained id)_value, propertyMeta);
+    }
 }
 
 
