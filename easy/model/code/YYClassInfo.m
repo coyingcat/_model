@@ -392,7 +392,6 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding){
         }
         curClassInfo = curClassInfo.superClassInfo;
     }
-    if (allPropertyMetas.count) _allPropertyMetas = allPropertyMetas.allValues.copy;
     
     // create mapper
     NSMutableDictionary *mapper = [NSMutableDictionary new];

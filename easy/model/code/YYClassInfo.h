@@ -171,9 +171,6 @@ typedef NS_OPTIONS(NSUInteger, YYEncodingType) {
 @public
     /// Key:mapped key and key path, Value:_YYModelPropertyMeta.
     NSDictionary *_mapper;
-    /// Array<_YYModelPropertyMeta>, all property meta of this model.
-    NSArray *_allPropertyMetas;
-    
 }
 
 - (instancetype)initWithClass:(Class)cls;
