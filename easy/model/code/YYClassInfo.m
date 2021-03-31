@@ -334,14 +334,14 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding){
     
     _YYModelPropertyMeta *meta = [self new];
     meta->_name = propertyInfo.name;
-    meta->_type = propertyInfo.type;
+    meta->_typeA = propertyInfo.type;
     meta->_info = propertyInfo;
     meta->_genericCls = generic;
     
-    if ((meta->_type & YYEncodingTypeMask) == YYEncodingTypeObject) {
+    if ((meta->_typeA & YYEncodingTypeMask) == YYEncodingTypeObject) {
         meta->_nsTypeX = YYClassGetNSType(propertyInfo.cls);
     } else {
-        meta->_isCNumber = YYEncodingTypeIsCNumber(meta->_type);
+        meta->_isCNumber = YYEncodingTypeIsCNumber(meta->_typeA);
     }
     meta->_cls = propertyInfo.cls;
     

@@ -101,7 +101,7 @@ static force_inline Class YYNSBlockClass() {
 static force_inline void ModelSetNumberToProperty(__unsafe_unretained id model,
                                                   __unsafe_unretained NSNumber *num,
                                                   __unsafe_unretained _YYModelPropertyMeta *meta) {
-    switch (meta->_type & YYEncodingTypeMask) {
+    switch (meta->_typeA & YYEncodingTypeMask) {
         case YYEncodingTypeBool: {
             ((void (*)(id, SEL, bool))(void *) objc_msgSend)((id)model, meta->_setter, num.boolValue);
         } break;
@@ -269,7 +269,7 @@ static void ModelSetValueForProperty(__unsafe_unretained id model,
         }
     } else {
         BOOL isNull = (value == (id)kCFNull);
-        switch (meta->_type & YYEncodingTypeMask) {
+        switch (meta->_typeA & YYEncodingTypeMask) {
             case YYEncodingTypeObject: {
                 Class cls = meta->_genericCls ?: meta->_cls;
                 if (isNull) {

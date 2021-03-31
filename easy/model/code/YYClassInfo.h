@@ -146,7 +146,7 @@ typedef NS_OPTIONS(NSUInteger, YYEncodingType) {
 @interface _YYModelPropertyMeta: NSObject {
 @public
     NSString *_name;             ///< property's name
-    YYEncodingType _type;        ///< property's type
+    YYEncodingType _typeA;        ///< property's type
     YYEncodingNSType _nsTypeX;    ///< property's Foundation type
     BOOL _isCNumber;             ///< is c number type
     Class _cls;                  ///< property's class, or nil

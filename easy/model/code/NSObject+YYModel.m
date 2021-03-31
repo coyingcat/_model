@@ -28,7 +28,7 @@
  */
 static NSNumber * ModelCreateNumberFromProperty(__unsafe_unretained id model,
                                                             __unsafe_unretained _YYModelPropertyMeta *meta) {
-    switch (meta->_type & YYEncodingTypeMask) {
+    switch (meta->_typeA & YYEncodingTypeMask) {
         case YYEncodingTypeBool: {
             return @(((bool (*)(id, SEL))(void *) objc_msgSend)((id)model, meta->_getter));
         }
@@ -146,7 +146,7 @@ static id ModelToJSONObjectRecursive(NSObject *model) {
             id v = ((id (*)(id, SEL))(void *) objc_msgSend)((id)model, propertyMeta->_getter);
             value = ModelToJSONObjectRecursive(v);
         } else {
-            switch (propertyMeta->_type & YYEncodingTypeMask) {
+            switch (propertyMeta->_typeA & YYEncodingTypeMask) {
                 case YYEncodingTypeObject: {
                     id v = ((id (*)(id, SEL))(void *) objc_msgSend)((id)model, propertyMeta->_getter);
                     value = ModelToJSONObjectRecursive(v);
