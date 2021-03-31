@@ -383,7 +383,7 @@ static void ModelSetWithDictionaryFunction(const void *_key, const void *_value,
         if (propertyMeta->_setter) {
             ModelSetValueForProperty(model, (__bridge __unsafe_unretained id)_value, propertyMeta);
         }
-        propertyMeta = propertyMeta->_next;
+        propertyMeta = nil;
     };
 }
 
