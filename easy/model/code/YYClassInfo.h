@@ -153,16 +153,8 @@ typedef NS_OPTIONS(NSUInteger, YYEncodingType) {
     Class _genericCls;           ///< container's generic class, or nil if threr's no generic class
     SEL _getter;                 ///< getter, or nil if the instances cannot respond
     SEL _setter;                 ///< setter, or nil if the instances cannot respond
-    BOOL _isStructAvailableForKeyedArchiver; ///< YES if the struct can encoded with keyed archiver/unarchiver
     
-    /*
-     property->key:       _mappedToKey:key     _mappedToKeyPath:nil            _mappedToKeyArray:nil
-     property->keyPath:   _mappedToKey:keyPath _mappedToKeyPath:keyPath(array) _mappedToKeyArray:nil
-     property->keys:      _mappedToKey:keys[0] _mappedToKeyPath:nil/keyPath    _mappedToKeyArray:keys(array)
-     */
     NSString *_mappedToKey;      ///< the key mapped to
-    NSArray *_mappedToKeyPath;   ///< the key path mapped to (nil if the name is not key path)
-    NSArray *_mappedToKeyArray;  ///< the key(NSString) or keyPath(NSArray) array (nil if not mapped to multiple keys)
     YYClassPropertyInfo *_info;  ///< property's info
     _YYModelPropertyMeta *_next; ///< next meta if there are multiple properties mapped to the same key.
 }

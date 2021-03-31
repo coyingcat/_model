@@ -165,32 +165,7 @@ static id ModelToJSONObjectRecursive(NSObject *model) {
         }
         if (!value) return;
         
-        if (propertyMeta->_mappedToKeyPath) {
-            NSMutableDictionary *superDic = dic;
-            NSMutableDictionary *subDic = nil;
-            for (NSUInteger i = 0, max = propertyMeta->_mappedToKeyPath.count; i < max; i++) {
-                NSString *key = propertyMeta->_mappedToKeyPath[i];
-                if (i + 1 == max) { // end
-                    if (!superDic[key]) superDic[key] = value;
-                    break;
-                }
-                
-                subDic = superDic[key];
-                if (subDic) {
-                    if ([subDic isKindOfClass:[NSDictionary class]]) {
-                        subDic = subDic.mutableCopy;
-                        superDic[key] = subDic;
-                    } else {
-                        break;
-                    }
-                } else {
-                    subDic = [NSMutableDictionary new];
-                    superDic[key] = subDic;
-                }
-                superDic = subDic;
-                subDic = nil;
-            }
-        } else if (!dic[propertyMeta->_mappedToKey]) {
+        if (!dic[propertyMeta->_mappedToKey]) {
             dic[propertyMeta->_mappedToKey] = value;
         }
     }];

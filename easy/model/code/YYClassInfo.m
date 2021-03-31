@@ -348,34 +348,6 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding){
     } else {
         meta->_isCNumber = YYEncodingTypeIsCNumber(meta->_type);
     }
-    if ((meta->_type & YYEncodingTypeMask) == YYEncodingTypeStruct) {
-        /*
-         It seems that NSKeyedUnarchiver cannot decode NSValue except these structs:
-         */
-        static NSSet *types = nil;
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            NSMutableSet *set = [NSMutableSet new];
-            // 32 bit
-            [set addObject:@"{CGSize=ff}"];
-            [set addObject:@"{CGPoint=ff}"];
-            [set addObject:@"{CGRect={CGPoint=ff}{CGSize=ff}}"];
-            [set addObject:@"{CGAffineTransform=ffffff}"];
-            [set addObject:@"{UIEdgeInsets=ffff}"];
-            [set addObject:@"{UIOffset=ff}"];
-            // 64 bit
-            [set addObject:@"{CGSize=dd}"];
-            [set addObject:@"{CGPoint=dd}"];
-            [set addObject:@"{CGRect={CGPoint=dd}{CGSize=dd}}"];
-            [set addObject:@"{CGAffineTransform=dddddd}"];
-            [set addObject:@"{UIEdgeInsets=dddd}"];
-            [set addObject:@"{UIOffset=dd}"];
-            types = set;
-        });
-        if ([types containsObject:propertyInfo.typeEncoding]) {
-            meta->_isStructAvailableForKeyedArchiver = YES;
-        }
-    }
     meta->_cls = propertyInfo.cls;
     
     if ((propertyInfo.getter) && ([classInfo.cls instancesRespondToSelector:propertyInfo.getter])) {
