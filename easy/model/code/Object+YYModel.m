@@ -91,49 +91,6 @@ static force_inline Class YYNSBlockClass() {
     return cls; // current is "NSBlock"
 }
 
-
-/// Get the value with key paths from dictionary
-/// The dic should be NSDictionary, and the keyPath should not be nil.
-static force_inline id YYValueForKeyPath(__unsafe_unretained NSDictionary *dic, __unsafe_unretained NSArray *keyPaths) {
-    id value = nil;
-    for (NSUInteger i = 0, max = keyPaths.count; i < max; i++) {
-        value = dic[keyPaths[i]];
-        if (i + 1 < max) {
-            if ([value isKindOfClass:[NSDictionary class]]) {
-                dic = value;
-            } else {
-                return nil;
-            }
-        }
-    }
-    return value;
-}
-
-/// Get the value with multi key (or key path) from dictionary
-/// The dic should be NSDictionary
-static force_inline id YYValueForMultiKeys(__unsafe_unretained NSDictionary *dic, __unsafe_unretained NSArray *multiKeys) {
-    id value = nil;
-    for (NSString *key in multiKeys) {
-        if ([key isKindOfClass:[NSString class]]) {
-            value = dic[key];
-            if (value) break;
-        } else {
-            value = YYValueForKeyPath(dic, (NSArray *)key);
-            if (value) break;
-        }
-    }
-    return value;
-}
-
-
-
-
-
-
-
-
-
-
 /**
  Set number to property.
  @discussion Caller should hold strong reference to the parameters before this function returns.
