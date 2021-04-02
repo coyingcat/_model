@@ -87,7 +87,7 @@ typedef NS_OPTIONS(NSUInteger, YYEncodingType) {
  Property information.
  */
 @interface YYClassPropertyInfo : NSObject
-@property (nonatomic, assign, readonly) objc_property_t property; ///< property's opaque struct
+@property (nonatomic, assign, readonly) objc_property_t propertyZ; ///< property's opaque struct
 @property (nonatomic, strong, readonly) NSString *name;           ///< property's name
 @property (nonatomic, assign, readonly) YYEncodingType type;      ///< property's type
 @property (nonatomic, strong, readonly) NSString *typeEncoding;   ///< property's encoding value
