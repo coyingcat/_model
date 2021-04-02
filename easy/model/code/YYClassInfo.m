@@ -180,7 +180,7 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding){
                         
                         NSString *clsName = nil;
                         if ([scanner scanUpToCharactersFromSet: [NSCharacterSet characterSetWithCharactersInString:@"\"<"] intoString:&clsName]) {
-                            if (clsName.length) _cls = objc_getClass(clsName.UTF8String);
+                            if (clsName.length) _clsX = objc_getClass(clsName.UTF8String);
                         }
                         
                         NSMutableArray *protocols = nil;
@@ -338,11 +338,11 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding){
     meta->_genericCls = generic;
     
     if ((meta->_typeA & YYEncodingTypeMask) == YYEncodingTypeObject) {
-        meta->_nsTypeX = YYClassGetNSType(propertyInfo.cls);
+        meta->_nsTypeX = YYClassGetNSType(propertyInfo.clsX);
     } else {
         meta->_isCNumber = YYEncodingTypeIsCNumber(meta->_typeA);
     }
-    meta->_cls = propertyInfo.cls;
+    meta->_cls = propertyInfo.clsX;
     
     if ((propertyInfo.getter) && ([classInfo.cls instancesRespondToSelector:propertyInfo.getter])) {
             meta->_getter = propertyInfo.getter;

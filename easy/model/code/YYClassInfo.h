@@ -92,7 +92,7 @@ typedef NS_OPTIONS(NSUInteger, YYEncodingType) {
 @property (nonatomic, assign, readonly) YYEncodingType type;      ///< property's type
 @property (nonatomic, strong, readonly) NSString *typeEncoding;   ///< property's encoding value
 @property (nonatomic, strong, readonly) NSString *ivarName;       ///< property's ivar name
-@property (nullable, nonatomic, assign, readonly) Class cls;      ///< may be nil
+@property (nullable, nonatomic, assign, readonly) Class clsX;      ///< may be nil
 @property (nullable, nonatomic, strong, readonly) NSArray<NSString *> *protocols; ///< may nil
 @property (nonatomic, assign, readonly) SEL getter;               ///< getter (nonnull)
 @property (nonatomic, assign, readonly) SEL setter;               ///< setter (nonnull)
